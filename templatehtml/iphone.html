@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="電卓">
+  <title>電卓(iPhone.ver)</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/iphonestyle.css">
+</head>
+
+<body>
+  <main>
+    <!-- このdiv(クラス名:output)が出力されるタグ設定でお願いします。 -->
+    <div class="output">123,4</div>
+    <!-- ここからmainタグ内で記述お願い！ -->
+    <input type ="text" class = "output" id = "result">
+    <div class = "row"> 
+      <input type="button" class ="sub" value="AC" onclick="">
+      <input type="button" class ="sub" value="+/-" onclick="">
+      <input type="button" class ="sub" value="%" onclick="">
+      <input type="button" class ="arithmetic" value="÷" onclick="">
+    </div>
+    <div class = "row">
+      <input type="button" class ="num" value="7" onclick="">
+      <input type="button" class ="num" value="8" onclick="">
+      <input type="button" class ="num" value="9" onclick="">
+      <input type="button" class ="arithmetic" value="×" onclick="">
+    </div>
+    <div class ="row">
+      <input type="button" class ="num" value="4" onclick="">
+      <input type="button" class ="num" value="5" onclick="">
+      <input type="button" class ="num" value="6" onclick="">
+      <input type="button" class ="arithmetic" value="－" onclick="">
+    </div>
+    <div class = "row">
+      <input type="button" class ="num" value="1" onclick="">
+      <input type="button" class ="num" value="2" onclick="">
+      <input type="button" class ="num" value="3" onclick="">
+      <input type="button" class ="arithmetic" value="＋" onclick="">
+    </div>
+    <div class = "row">
+      <input type="button" class ="num" value="0" onclick="">
+      <input type="button" class ="num" value="." onclick="">
+      <input type="button" class ="arithmetic" value="＝" onclick="">
+    </div>
+  </main>
+  <!-- jQueryプラグイン -->
+  <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@import url("common.css");
+
+/* ここからお願いします */
+
+/* サンプルとして判定内にどのように書くか記述しておいたので 
+    使用する時は背景の色や文字の大きさの削除お願いします。*/
+
+/* PC用 */
+body {
+  background: black;
+}
+.row {
+  display: flex;
+  justify-content: space-around;
+  border: 2px solid red;
+  width: 100%;
+  height:auto;
+}
+.row input{
+  width: 85px;
+  height:85px;
+
+}
+.output{
+  background:black;
+  border:solid black;
+  color: white;
+  text-align: right;
+  font-size: 50px;
+}
+.num{
+  background: rgb(68, 68, 68);
+  color:white;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+.sub{
+  background:gray;
+  color:black;
+  border-radius: 50%; 
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+.arithmetic{
+  background:orange;
+  color:white;
+  border-radius: 50%; 
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+/* 横幅1023px以下の時 (モバイル　横画面用) */
+@media screen and (max-width: 1023px) {
+  body {
+    background: blue;
+  }
+  p{
+    font-size: 20px;
+  }
+  
+}
+
+/* 横幅500px以下の時 (モバイル　縦画面用) */
+@media screen and (max-width: 500px) {
+  body {
+    background: red;
+  }
+  p{
+    font-size: 10px;
+  }
+}
