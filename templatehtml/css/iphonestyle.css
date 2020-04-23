@@ -8,7 +8,36 @@
 
 /* PC用 */
 body {
-  background: pink;
+  background: black;
+  font-size: 50px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid red;
+  width: 100%;
+  height:auto;
+}
+.output{
+  background:black;
+  border:solid black;
+  color: white;
+  text-align: right;
+}
+.num{
+  background: rgb(68, 68, 68);
+  color:white;
+  border-radius: 50%;
+}
+.sub{
+  background:gray;
+  color:black;
+  border-radius: 50%; 
+}
+.arithmetic{
+  background:orange;
+  color:white;
+  border-radius: 50%; 
 }
 
 /* 横幅1023px以下の時 (モバイル　横画面用) */
@@ -19,6 +48,7 @@ body {
   p{
     font-size: 20px;
   }
+  
 }
 
 /* 横幅500px以下の時 (モバイル　縦画面用) */
