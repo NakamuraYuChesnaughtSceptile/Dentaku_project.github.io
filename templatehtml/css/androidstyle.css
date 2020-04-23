@@ -1,32 +1,26 @@
 @charset "UTF-8";
 @import url("common.css");
 
-/* ここからお願いします */
-
-/* サンプルとして判定内にどのように書くか記述しておいたので 
-    使用する時は背景の色や文字の大きさの削除お願いします。*/
-
-/* PC用 */
-body {
-  background: pink;
+main{
+  align:center;
 }
-
-/* 横幅1023px以下の時 (モバイル　横画面用) */
-@media screen and (max-width: 1023px) {
-  body {
-    background: blue;
-  }
-  p{
-    font-size: 20px;
-  }
+table{
+  border: 1;
+  border-color: greenyellow;
 }
-
-/* 横幅500px以下の時 (モバイル　縦画面用) */
-@media screen and (max-width: 500px) {
-  body {
-    background: red;
-  }
-  p{
-    font-size: 10px;
-  }
+button.number{
+  background-color: #2E2E2E;
+  border: 0px;
+  color: white;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+tr{
+  width: 100%;
+  height: 100%;
+}
+td{
+  width: 160px;
+  height: 50px;
 }
