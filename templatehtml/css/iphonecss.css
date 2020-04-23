@@ -16,7 +16,7 @@ body {
   display: flex;
   justify-content: space-around;
   border: 2px solid red;
-  width: 100%;
+  width: 30%;
   height:auto;
 }
 .row input{
@@ -25,11 +25,14 @@ body {
 
 }
 .output{
-  background:black;
-  border:solid black;
+  background: rgba(0, 0, 0, 0);
+  border:solid rgba(0,0,0,0);
   color: white;
   text-align: right;
   font-size: 50px;
+}
+#result{
+  width:100%;
 }
 .num{
   background: rgb(68, 68, 68);
@@ -38,6 +41,10 @@ body {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
+}
+#zero{
+  width: 170px;
+  border-radius: 45% 45% 45% 45%;
 }
 .sub{
   background:gray;

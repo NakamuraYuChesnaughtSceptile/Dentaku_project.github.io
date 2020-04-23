@@ -7,7 +7,7 @@
   <meta name="description" content="電卓">
   <title>電卓(iPhone.ver)</title>
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/iphonestyle.css">
+  <link rel="stylesheet" href="css/iphonecss.css">
 </head>
 
 <body>
@@ -15,36 +15,40 @@
     <!-- このdiv(クラス名:output)が出力されるタグ設定でお願いします。 -->
     <div class="output">123,4</div>
     <!-- ここからmainタグ内で記述お願い！ -->
-    <input type ="text" class = "output" id = "result">
-    <div class = "row"> 
-      <input type="button" class ="sub" value="AC" onclick="">
-      <input type="button" class ="sub" value="+/-" onclick="">
-      <input type="button" class ="sub" value="%" onclick="">
-      <input type="button" class ="arithmetic" value="÷" onclick="">
-    </div>
-    <div class = "row">
-      <input type="button" class ="num" value="7" onclick="">
-      <input type="button" class ="num" value="8" onclick="">
-      <input type="button" class ="num" value="9" onclick="">
-      <input type="button" class ="arithmetic" value="×" onclick="">
-    </div>
-    <div class ="row">
-      <input type="button" class ="num" value="4" onclick="">
-      <input type="button" class ="num" value="5" onclick="">
-      <input type="button" class ="num" value="6" onclick="">
-      <input type="button" class ="arithmetic" value="－" onclick="">
-    </div>
-    <div class = "row">
-      <input type="button" class ="num" value="1" onclick="">
-      <input type="button" class ="num" value="2" onclick="">
-      <input type="button" class ="num" value="3" onclick="">
-      <input type="button" class ="arithmetic" value="＋" onclick="">
-    </div>
-    <div class = "row">
-      <input type="button" class ="num" value="0" onclick="">
-      <input type="button" class ="num" value="." onclick="">
-      <input type="button" class ="arithmetic" value="＝" onclick="">
-    </div>
+    <table class = "row"> 
+      <tr>
+        <td colspan="4"><input type ="text" class = "output" id = "result"></td>
+      </tr>
+      <tr>
+        <td><input type="button" class ="sub" value="AC" onclick=""></td>
+        <td><input type="button" class ="sub" value="+/-" onclick=""></td>
+        <td><input type="button" class ="sub" value="%" onclick=""></td>
+        <td><input type="button" class ="arithmetic" value="÷" onclick=""></td>
+      </tr>
+      <tr>
+        <td><input type="button" class ="num" value="7" onclick=""></td>
+        <td><input type="button" class ="num" value="8" onclick=""></td>
+        <td><input type="button" class ="num" value="9" onclick=""></td>
+        <td><input type="button" class ="arithmetic" value="×" onclick=""></td>
+      </tr>
+      <tr>
+        <td><input type="button" class ="num" value="4" onclick=""></td>
+        <td><input type="button" class ="num" value="5" onclick=""></td>
+        <td><input type="button" class ="num" value="6" onclick=""></td>
+        <td><input type="button" class ="arithmetic" value="－" onclick=""></td>
+      </tr>
+      <tr>
+        <td><input type="button" class ="num" value="1" onclick=""></td>
+        <td><input type="button" class ="num" value="2" onclick=""></td>
+        <td><input type="button" class ="num" value="3" onclick=""></td>
+        <td><input type="button" class ="arithmetic" value="＋" onclick=""></td>
+      </tr>
+    <tr>
+        <td colspan="2"><input type="button" class ="num" id = "zero" value="0" onclick=""></td>
+        <td><input type="button" class ="num" value="." onclick=""></td>
+        <td><input type="button" class ="arithmetic" value="＝" onclick=""></td>
+    </tr>
+  </table>
   </main>
   <!-- jQueryプラグイン -->
   <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
