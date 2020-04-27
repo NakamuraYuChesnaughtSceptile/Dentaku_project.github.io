@@ -3,24 +3,233 @@
 
 main{
   align:center;
-}
-table{
-  border: 1;
-  border-color: greenyellow;
-}
-button.number{
   background-color: #2E2E2E;
+}
+input.result_input_V{
+  margin-top: 20px;
+  margin-bottom: 0px;
+  width: 380px;
+  height: 150px;
+}
+table.number_table_V{
+  width: 100px;
+  height: 395px;
+  margin: 0px,0px,0px,0px;
   border: 0px;
-  color: white;
-  width: 100%;
-  height: 100%;
+  border-color: #2E2E2E;
+  padding: 0px;
+  border-collapse: collapse;
+  border-spacing: -2px;
+}
+table.operator_table_V{
+  width: 75px;
+  height: 395px;
+  margin: 0px,0px,0px,0px;
+  border: 0px;
+  border-color: #2E2E2E;
+  padding: 0px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+table.bar_table_V{
+  width: 30px;
+  height: 399px;
   margin: 0px;
+  padding: 0px;
+  border-collapse: collapse;
+}
+.row input{
+  width: 85px;
+  height:85px;
+
 }
 tr{
-  width: 100%;
-  height: 100%;
+  margin: 0px;
+  border-collapse: collapse;
+  border-spacing: 0px;
 }
 td{
-  width: 160px;
-  height: 50px;
+  border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
+  border-spacing: 0px;
+}
+td.number_td_V{
+  margin-top: -50px;
+  padding: 0px;
+}
+td.DELETEorCLEAR_td_V{
+  width: 70px;
+  margin: 0px;
+  height: 75px;
+}
+td.operator_td_V{
+  width: 75px;
+  height: 75px;
+  margin: 0px;
+  padding: 0px;
+}
+td.bar.td_V{
+  margin: 0px;
+  padding: 0px;
+}
+button.number_button_V{
+  width: 90px;
+  height: 80px;
+  background-color: #2E2E2E;
+  color: white;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 30px;
+  outline: 0px;
+}
+button.DELETEorCLEAR_button_V{
+  width: 75px;
+  height: 87px;
+  background-color: grey;
+  color: white;
+  border: 0px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+}
+button.operator_button_V{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 75px;
+  height: 78px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+}
+
+input.result_input_S{
+  margin-top: 20px;
+  width: 700px;
+  height: 45px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+table.side_table{
+  width: 900px;
+  margin: 0px;
+  padding: 0px;
+  border-collapse: collapse;
+}
+table.LeftCenter_table_S{
+  width: 100px;
+  height: 80px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  border-collapse: collapse;
+}
+table.Right_table_S{
+  width: 80px;
+  height: 80px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px,0px,0px,0px;
+  border-collapse: collapse;
+}
+tr.LeftCenter_tr_S{
+  width: 100px;
+  height: 60px;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+td.number_td_S{
+  width: 70px;
+  height: 40px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px,0px,0px,0px;
+  padding-left: 0px;
+  border-collapse: collapse;
+}
+td.operator_td_S{
+  width: 70px;
+  height: 60px;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 0px;
+  border-collapse: collapse;
+}
+td.operator2_td_S{
+  width: 50px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 0px;
+  border-collapse: collapse;
+}
+button.number_button_S{
+  background-color: #2E2E2E;
+  color: white;
+  width: 90px;
+  height: 60px;
+  border: 0px;
+  margin: 0px;
+  padding: 0px,0px,0px,0px;
+  outline: none;
+}
+button.nonnumber_button_S{
+  background-color: #2E2E2E;
+  color: white;
+  border: none;
+  margin: none;
+  padding: none;
+  outline: none;
+  width: 90px;
+  height: 60px;
+}
+button.operator_button_S{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 63px;
+  height: 63px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+  font-size: 12px;
+}
+button.nonoperator_button_S{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 63px;
+  height: 63px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+}
+button.DELETEorCLEAR_button_S{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 63px;
+  height: 63px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+  font-size: 12px;
+}
+button.operator2_button_S{
+  background-color: #00FFFF;
+  border: 0px;
+  color: black;
+  width: 50px;
+  height: 40px;
+  margin: 0px,0px,0px,0px;
+  padding: 0px;
+  outline: 0px;
+  font-size: 12px;
+}
+.clearText {
+	text-indent:100%;
+	white-space:nowrap;
+	overflow:hidden;
 }
