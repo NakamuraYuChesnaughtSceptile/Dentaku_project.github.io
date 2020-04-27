@@ -76,13 +76,13 @@
         <td><input type="button" class ="none" value="Rand" onclick=""></td>
         <td colspan="2"><input type="button" class ="num" id = "zero" value="0" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="." onclick="pointClick()"></td>
-        <td><input type="button" class ="equal" value="＝" onclick=""></td>
+        <td><input type="button" class ="equal" value="＝" onclick="equal()"></td>
     </tr>
   </table>
   </main>
   <!-- jQueryプラグイン -->
   <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
-    crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
     <script>
       function numberClick(num){
         if(result.value == "0"){
@@ -108,13 +108,26 @@
           result.value = "-" + result.value;
         }
       }
+      var math = new String();
       function addition(){
+        math = math+result.value+"+";
+        result.value = 0;
       }
       function subtraction(){
+        math = math+result.value+"-";
+        result.value = 0;
       }
       function multiplication(){
+        math = math+result.value+"*";
+        result.value = 0;
       }
       function division(){
+        math = math+result.value+"/";
+        result.value = 0;
+      }
+      function equal(){
+        result.value = eval(math+result.value);
+        math = "";
       }
       $(function(){
         $('.arithmetic').on('click', function(event){
@@ -125,6 +138,7 @@
       });
       $(function(){
         $('.num').on('click', function(event){
+          $('#clear').val('C');
           event.preventDefault();
           $('.arithmetic').removeClass('active');
         });
@@ -137,6 +151,8 @@
       });
       $(function(){
         $('#clear').on('click', function(event){
+          math = "";
+          $('#clear').val('AC');
           event.preventDefault();
           $('.arithmetic').removeClass('active');
         });
