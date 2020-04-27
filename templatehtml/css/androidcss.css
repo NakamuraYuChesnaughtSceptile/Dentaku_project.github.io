@@ -3,9 +3,26 @@
 
 main{
   align:center;
+  background-color: #2E2E2E;
 }
-table{
-  border: 1;
+input.result_input{
+  margin-top: 20px;
+  margin-bottom: 0px;
+  width: 380px;
+  height: 150px;
+}
+table.number_table{
+  margin: 0px;
+  border: none;
+  border-color: #2E2E2E;
+  padding: 0px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+table.operator_table{
+  margin: 0px;
+  height: 350px;
+  border: none;
   border-color: #2E2E2E;
   padding: 0px;
   border-collapse: collapse;
@@ -24,6 +41,25 @@ button.number{
   height: 100%;
   margin: 0px;
   padding: 0px;
+  font-size: 25px;
+}
+button.DELETEorCLEAR{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 80px;
+  height: 85px;
+  margin: 0px;
+  padding: 0px;
+}
+button.operator{
+  background-color: grey;
+  border: 0px;
+  color: white;
+  width: 80px;
+  height: 85px;
+  margin: 0px;
+  padding: 0px;
 }
 tr{
   width: 100%;
@@ -35,5 +71,19 @@ td{
   width: 150px;
   height: 90px;
   border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
   border-spacing: 0px;
+}
+td.number{
+  margin-top: 0px;
+  padding-top: 0px;
+}
+td.DELETEorCLEAR{
+  margin: 0px;
+  height: 85px;
+}
+td.operator{
+  margin: 0px;
+  height: 85px;
 }
