@@ -26,7 +26,7 @@
         <td><input type="button" class ="none" value="m＋" onclick=""></td>
         <td><input type="button" class ="none" value="m－" onclick=""></td>
         <td><input type="button" class ="none" value="mr" onclick=""></td>
-        <td><input type="button" class ="sub" value="AC" onclick="clearClick()"></td>
+        <td><input type="button" class ="sub" value="AC" id = "clear" onclick="clearClick()"></td>
         <td><input type="button" class ="sub" value="+/-" onclick="pmClick()"></td>
         <td><input type="button" class ="sub" value="%" onclick="percentClick()"></td>
         <td><input type="button" class ="arithmetic" value="÷" onclick="division()"></td>
@@ -76,7 +76,7 @@
         <td><input type="button" class ="none" value="Rand" onclick=""></td>
         <td colspan="2"><input type="button" class ="num" id = "zero" value="0" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="." onclick="pointClick()"></td>
-        <td><input type="button" class ="arithmetic" value="＝" onclick=""></td>
+        <td><input type="button" class ="equal" value="＝" onclick=""></td>
     </tr>
   </table>
   </main>
@@ -116,7 +116,32 @@
       }
       function division(){
       }
-    </script>
+      $(function(){
+        $('.arithmetic').on('click', function(event){
+          event.preventDefault();
+          $('.arithmetic').removeClass('active');
+          $(this).toggleClass('active');
+        });
+      });
+      $(function(){
+        $('.num').on('click', function(event){
+          event.preventDefault();
+          $('.arithmetic').removeClass('active');
+        });
+      });
+      $(function(){
+        $('.equal').on('click', function(event){
+          event.preventDefault();
+          $('.arithmetic').removeClass('active');
+        });
+      });
+      $(function(){
+        $('#clear').on('click', function(event){
+          event.preventDefault();
+          $('.arithmetic').removeClass('active');
+        });
+      });
+</script>
 </body>
 
 </html>
