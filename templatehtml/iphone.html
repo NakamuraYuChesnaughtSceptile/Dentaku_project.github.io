@@ -8,42 +8,6 @@
   <title>電卓(iPhone.ver)</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/iphonecss.css">
-
-<script type="text/javascript" language="javascript">
-  function numberClick(num){
-    if(result.value == "0"){
-      result .value = num.value;
-    }else{
-      result.value = result.value + num.value;
-    }
-  }
-  function clearClick(){
-    result.value = 0;
-  }
-  function pointClick(){
-    result.value = result.value + ".";
-  }
-  function percentClick(){
-    result.value = result.value/100;
-  }
-  function pmClick(){
-    resultnum = result.value;
-    if(resultnum.indexOf("-") !== -1){
-      result.value = resultnum.replace( /-/g , "" );
-    }else{
-      result.value = "-" + result.value;
-    }
-  }
-  function addition(){
-  }
-  function subtraction(){
-  }
-  function multiplication(){
-  }
-  function division(){
-  }
-</script>
-
 </head>
 
 <body>
@@ -119,6 +83,40 @@
   <!-- jQueryプラグイン -->
   <script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
     crossorigin="anonymous"></script>
+    <script>
+      function numberClick(num){
+        if(result.value == "0"){
+          result .value = num.value;
+        }else{
+          result.value = result.value + num.value;
+        }
+      }
+      function clearClick(){
+        result.value = 0;
+      }
+      function pointClick(){
+        result.value = result.value + ".";
+      }
+      function percentClick(){
+        result.value = result.value/100;
+      }
+      function pmClick(){
+        resultnum = result.value;
+        if(resultnum.indexOf("-") !== -1){
+          result.value = resultnum.replace( /-/g , "" );
+        }else{
+          result.value = "-" + result.value;
+        }
+      }
+      function addition(){
+      }
+      function subtraction(){
+      }
+      function multiplication(){
+      }
+      function division(){
+      }
+    </script>
 </body>
 
 </html>
