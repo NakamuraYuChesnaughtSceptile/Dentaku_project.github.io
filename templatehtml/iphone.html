@@ -85,8 +85,14 @@
 crossorigin="anonymous"></script>
     <script>
       function numberClick(num){
-        if(result.value == "0"){
+        if(num.value !== "0"){
+        $('#clear').val('C');
+        }
+        if(result.value == "0"||isNaN(math.slice( -1 ))){
           result .value = num.value;
+          math = math + "0";
+        }else if(result.value =="-0"){
+          result.value = "-" + num.value;
         }else{
           result.value = result.value + num.value;
         }
@@ -110,23 +116,19 @@ crossorigin="anonymous"></script>
       }
       var math = new String();
       function addition(){
-        math = math+result.value+"+";
-        result.value = 0;
+        math = (math.slice( 0, -1 ))+result.value+"+";
       }
       function subtraction(){
-        math = math+result.value+"-";
-        result.value = 0;
+        math = (math.slice( 0, -1 ))+result.value+"-";
       }
       function multiplication(){
-        math = math+result.value+"*";
-        result.value = 0;
+        math = (math.slice( 0, -1 ))+result.value+"*";
       }
       function division(){
-        math = math+result.value+"/";
-        result.value = 0;
+        math = (math.slice( 0, -1 ))+result.value+"/";
       }
       function equal(){
-        result.value = eval(math+result.value);
+        result.value = eval(math.slice( 0, -1 )+result.value);
         math = "";
       }
       $(function(){
@@ -138,7 +140,6 @@ crossorigin="anonymous"></script>
       });
       $(function(){
         $('.num').on('click', function(event){
-          $('#clear').val('C');
           event.preventDefault();
           $('.arithmetic').removeClass('active');
         });
