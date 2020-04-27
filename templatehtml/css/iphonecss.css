@@ -111,7 +111,7 @@ body {
     display: flex;
     justify-content: space-around;
     border: 2px solid red;
-    width: 80%;
+    width: 100%;
     height:auto;
   }
   .row input{
