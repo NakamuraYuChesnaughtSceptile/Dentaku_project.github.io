@@ -109,9 +109,14 @@ input.result_input_S{
   margin-top: 20px;
   width: 700px;
   height: 45px;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 table.side_table{
   width: 900px;
+  margin: 0px;
+  padding: 0px;
+  border-collapse: collapse;
 }
 table.LeftCenter_table_S{
   width: 100px;
