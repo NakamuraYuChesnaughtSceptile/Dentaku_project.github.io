@@ -2,7 +2,6 @@
 @import url("common.css");
 
 main{
-  align:center;
   background-color: #2E2E2E;
 }
 input.result_input_V{
@@ -113,8 +112,8 @@ input.result_input_S{
   padding: 0px;
 }
 table.side_table{
-  width: 900px;
-  margin: 0px;
+  width: 100%;
+  margin: auto;
   padding: 0px;
   border-collapse: collapse;
 }
@@ -232,4 +231,10 @@ button.operator2_button_S{
 	text-indent:100%;
 	white-space:nowrap;
 	overflow:hidden;
+}
+div.cluc_S{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
 }
