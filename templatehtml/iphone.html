@@ -103,14 +103,18 @@ crossorigin="anonymous"></script>
         result.value = 0;
       }
       function pointClick(){
-        result.value = result.value + ".";
+        if((result.value).indexOf(".") !== -1){
+          result.value = result.value;
+        }else{
+          result.value = result.value+".";
+        }
       }
       function percentClick(){
         answer = (result.value).replace( /,/g , "" )/100;
         result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
       }
       function pmClick(){
-        resultnum = result.value;
+        var resultnum = result.value;
         if(resultnum.indexOf("-") !== -1){
           result.value = resultnum.replace( /-/g , "" );
         }else{
