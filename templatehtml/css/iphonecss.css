@@ -119,7 +119,7 @@ body {
 @media screen and (max-width: 500px) {
   body {
     background: black;
-    width:100%;
+    width:80%;
   }
   p{
     font-size: 10px;
