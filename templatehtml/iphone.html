@@ -142,22 +142,46 @@ crossorigin="anonymous"></script>
       var cnt;
       function addition(){
         cnt=0;
-        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"+";
+        if(arith=="+"||arith=="-"){
+          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          math = result.value+"+";
+        }else{
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"+";
+        }
         arith = "+";
       }
       function subtraction(){
         cnt=0;
-        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"-";
+        if(arith=="+"||arith=="-"){
+          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          math = result.value+"-";
+        }else{
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"-";
+        }
         arith = "-";
       }
       function multiplication(){
         cnt=0;
-        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"*";
+        if(arith=="*"||arith=="/"){
+          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          math = result.value+"*";
+        }else{
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"*";
+        }
         arith = "*";
       }
       function division(){
         cnt=0;
-        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"/";
+        if(arith=="*"||arith=="/"){
+          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          math = result.value+"/";
+        }else{
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"/";
+        }
         arith = "/";
       }
       function equal(){
