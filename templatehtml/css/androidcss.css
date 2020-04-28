@@ -106,16 +106,19 @@ button.operator_button_V{
 
 input.result_input_S{
   margin-top: 20px;
-  width: 700px;
-  height: 45px;
+  width: 300px;
+  height: 65px;
   margin-bottom: 0px;
   padding: 0px;
+  border-spacing: 0px;
 }
 table.side_table{
   width: 100%;
   margin: auto;
   padding: 0px;
+  border: 0px;
   border-collapse: collapse;
+  border-spacing: -2px;
 }
 table.LeftCenter_table_S{
   width: 100px;
@@ -124,14 +127,16 @@ table.LeftCenter_table_S{
   border: 0px;
   padding: 0px;
   border-collapse: collapse;
+  border-spacing: -2px;
 }
 table.Right_table_S{
-  width: 80px;
-  height: 80px;
+  width: 55px;
+  height: 70px;
   margin: 0px;
   border: 0px;
   padding: 0px,0px,0px,0px;
   border-collapse: collapse;
+  border-spacing: 0px;
 }
 tr.LeftCenter_tr_S{
   width: 100px;
@@ -139,6 +144,7 @@ tr.LeftCenter_tr_S{
   border: 0px;
   margin: 0px;
   padding: 0px;
+  border-spacing: 0px;
 }
 td.number_td_S{
   width: 70px;
@@ -157,7 +163,7 @@ td.operator_td_S{
   border-collapse: collapse;
 }
 td.operator2_td_S{
-  width: 50px;
+  width: 45px;
   height: 40px;
   margin: 0px;
   padding: 0px;
@@ -168,7 +174,7 @@ button.number_button_S{
   background-color: #2E2E2E;
   color: white;
   width: 90px;
-  height: 60px;
+  height: 65px;
   border: 0px;
   margin: 0px;
   padding: 0px,0px,0px,0px;
@@ -182,14 +188,15 @@ button.nonnumber_button_S{
   padding: none;
   outline: none;
   width: 90px;
-  height: 60px;
+  height: 65px;
+  font-size: 14px;
 }
 button.operator_button_S{
   background-color: grey;
   border: 0px;
   color: white;
-  width: 63px;
-  height: 63px;
+  width: 69px;
+  height: 69px;
   margin: 0px,0px,0px,0px;
   padding: 0px;
   outline: 0px;
@@ -199,8 +206,8 @@ button.nonoperator_button_S{
   background-color: grey;
   border: 0px;
   color: white;
-  width: 63px;
-  height: 63px;
+  width: 69px;
+  height: 69px;
   margin: 0px,0px,0px,0px;
   padding: 0px;
   outline: 0px;
@@ -209,8 +216,8 @@ button.DELETEorCLEAR_button_S{
   background-color: grey;
   border: 0px;
   color: white;
-  width: 63px;
-  height: 63px;
+  width: 69px;
+  height: 69px;
   margin: 0px,0px,0px,0px;
   padding: 0px;
   outline: 0px;
@@ -220,8 +227,8 @@ button.operator2_button_S{
   background-color: #00FFFF;
   border: 0px;
   color: black;
-  width: 50px;
-  height: 40px;
+  width: 58px;
+  height: 55px;
   margin: 0px,0px,0px,0px;
   padding: 0px;
   outline: 0px;
