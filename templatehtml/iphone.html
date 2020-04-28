@@ -93,10 +93,11 @@ crossorigin="anonymous"></script>
           result.value = num.value;
           math = num.value;
           cnt = 0;
-        }else if(result.value == "0"||isNaN(math.slice( -1 ))){
+        }else if(result.value == "0"||isNaN(math.slice( -1 ))||per!==0){
           result.value = num.value;
           math = math + "0";
           cnt = 0;
+          per = 0;
         }else if(result.value =="-0"){
           result.value = "-" + num.value;
         }else{
@@ -106,10 +107,10 @@ crossorigin="anonymous"></script>
             }else{
               result.value = result.value + "0";
             }
-        }else{
-          answer = (result.value).replace( /,/g , "" ) + num.value;
-          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-        }
+          }else{
+            answer = (result.value).replace( /,/g , "" ) + num.value;
+            result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          }
         }
       }
       function clearClick(){
@@ -122,7 +123,9 @@ crossorigin="anonymous"></script>
           result.value = result.value+".";
         }
       }
+      var per;
       function percentClick(){
+        per++;
         answer = (result.value).replace( /,/g , "" )/100;
         result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
       }
@@ -186,7 +189,15 @@ crossorigin="anonymous"></script>
           math = math.slice(0,-1)+(arith).replace( /,/g , "" );
           cnt++;
           console.log("c"+math);
+        }else if(arith.length == 1){
+          arith = arith + result.value;
+          answer = eval(math.slice(0,-2)+arith);
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          math = math.slice(0,-2)+(arith).replace( /,/g , "" );
+          cnt++;
+          console.log("z"+math);
         }else{
+          console.log("arith"+ arith);
           answer = eval(math+arith);
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math+(arith).replace( /,/g , "" );
