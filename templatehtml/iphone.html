@@ -117,7 +117,7 @@ crossorigin="anonymous"></script>
               }
             }else{
               if(pm !== 0){
-                answer = ((result.value).replace( /,/g , "" )).replace(/-/,"") + num.value;
+                answer = ((result.value).replace( /,/g , "" )).replace(/\-/,"") + num.value;
                 result.value = "-"+Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
               }else{
                 answer = (result.value).replace( /,/g , "" ) + num.value;
@@ -170,7 +170,7 @@ crossorigin="anonymous"></script>
                 }
               }else{
                 if(pm !== 0){
-                  answer = ((result.value).replace( /,/g , "" )).replace(/-/,"") + num.value;
+                  answer = ((result.value).replace( /,/g , "" )).replace(/\-/,"") + num.value;
                   result.value = "-"+Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
                 }else{
                   answer = (result.value).replace( /,/g , "" ) + num.value;
@@ -219,7 +219,7 @@ crossorigin="anonymous"></script>
       function pmClick(){
         var resultnum = result.value;
         if(resultnum.indexOf("-") !== -1){
-          result.value = resultnum.replace( /-/g , "" );
+          result.value = resultnum.replace( /\-/g , "" );
           pm=0;
         }else{
           result.value = "-" + result.value;
@@ -232,34 +232,28 @@ crossorigin="anonymous"></script>
       function addition(){
         cnt=0;
         pm=0;
-        if(arith=="+"||arith=="-"){
-          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
-          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-          math = result.value+"+";
-        }else{
           math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"+";
-        }
+          answer = eval(math.slice( 0, -1 ));
+          result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
+          
         arith = "+";
       }
       function subtraction(){
         cnt=0;
         pm=0;
-        if(arith=="+"||arith=="-"){
-          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"-";
+          answer = eval(math.slice( 0, -1 ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-          math = result.value+"-";
-        }else{
-          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"-";
-        }
         arith = "-";
       }
       function multiplication(){
         cnt=0;
         pm=0;
         if(arith=="*"||arith=="/"){
-          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"*";
+          answer = eval(math.slice( 0, -1 ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-          math = result.value+"*";
+          
         }else{
           math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"*";
         }
@@ -269,9 +263,10 @@ crossorigin="anonymous"></script>
         cnt=0;
         pm=0;
         if(arith=="*"||arith=="/"){
-          answer = eval((math.slice( 0, -1 ))+(result.value).replace( /,/g , "" ));
+          math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"/";
+          answer = eval(math.slice( 0, -1 ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-          math = result.value+"/";
+          
         }else{
           math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"/";
         }
@@ -279,36 +274,43 @@ crossorigin="anonymous"></script>
       }
       function equal(){
         if(!isNaN((math).replace( /,/g , "" ))&&!arith){
+          console.log("a");
           cnt ++;
         }else if(!isNaN((math).replace( /,/g , "" ))&&cnt==0){
+          console.log("b");
           answer = eval(math+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math+(arith).replace( /,/g , "" );
           cnt++;
         }else  if(cnt=="0"&&!isNaN(math.slice(-2))){
+          console.log("c");
           arith = arith + result.value;
           answer = eval(math.slice( 0, -2 )+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math.slice( 0, -2 )+(arith).replace( /,/g , "" );
           cnt++;
         }else if(cnt=="0"&&isNaN(math.slice(-1))){
+          console.log("d");
           arith = arith + result.value;
           answer = eval(math.slice(0,-1)+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math.slice(0,-1)+(arith).replace( /,/g , "" );
           cnt++;
         }else if(isNaN(math.slice(-1))){
+          console.log("e");
           answer = eval(math.slice(0,-1)+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math.slice(0,-1)+(arith).replace( /,/g , "" );
           cnt++;
         }else if(arith.length == 1){
+          console.log("f");
           arith = arith + result.value;
           answer = eval(math.slice(0,-2)+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math.slice(0,-2)+(arith).replace( /,/g , "" );
           cnt++;
         }else{
+          console.log("g");
           answer = eval(math+(arith).replace( /,/g , "" ));
           result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
           math = math+(arith).replace( /,/g , "" );
