@@ -215,19 +215,45 @@
   <script type="text/javascript" src="JavaScript/ripple.js"></script>
   <script>
     var answer;
+    var numstac = new array();/*スタックで逆ポーランド*/
+    var opestac = new array();
+    var DELFlag;
     /*数値表示*/
     function numberClick(number){
-      if((result.value == "0" && result.value.slice(0,-1)==null)||isNaN(result.value.slice(-2,-1))){/*初期値0の上書き　記号*/
-        result .value = number.value;
-        math = math + "0";
-      }else if(result.value.slice(-1)){
-        result.value+=number.value;
-      }else if(result.value =="-0"){
-        result.value = "-" + number.value;
-      }/*else{/*小数点の時の0
+      if(result.value == "0" && number.value != "0"){/*前数値0かつ入力値0以外で数値の上書き*/
+        result.value = number.value;
+        DELFlag = 1;
+      }else if(result.value == "0" && number.value == "0"){
+        DELFlag = 1;
+      }
+      /*前値が演算子*/
+      if(result.value.slice(-1) == "+" || result.value.slice(-1) == "×" || result.value.slice(-1) == "÷"){
+        opestac.push(result.value.slice(-1));
+        result.value += number.value;
+        DELFlag = 1;
+      }else if(result.value.slice(-1) == "-" && result.value.slice(-2,-1) != null){
+        opestac.push(result.value.slice(-1));
+        result.value += number.value;
+        DELFlag = 1;
+      }else if(result.value.slice(-1) == "-" && result.value.slice(-2,-1) != null){
+        result.value += number.value;
+        DELFlag = 1;
+      }
+      /*前値が小数点*/
+      if(result.value == "."){
+        result.value=number.value*0.1;
+        DELFlag = 1;
+      }else if(result.value.slice(-2) == "0."){
+        result.value += number.value;
+      }
+      /*前値が数値*/
+      if(parseFloat(result.value.slice(-1)) != true){
+        result.value += number.value;
+      }
+      else{/*小数点の時の0*/
         answer = (result.value).replace( /,/g , "" ) + number.value;
         result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
-      }*/
+      }
     }
     /*1桁消す*/
     function DELETEClick(){
@@ -244,20 +270,29 @@
     /*演算子*/
     var math = new String();
       function addition(){
-        if(isNaN(result.value.slice(-1))){
+        if(result.value.slice(-1)=="-" || result.value.slice(-1)=="×" || result.value.slice(-1)=="÷"){
           result.value = result.value.slice(0,-1);
+          opestac.pop();
+          opestac.push("+");
           result.value+="+";
+          DELFlag = 2;
+        }
+        else if(result.value=="."){
+          result.value="0.";
+          DELFlag = 3;
         }
         else{
-          result.value+="+"
+          result.value+="+";
         }
       }
       function subtraction(){
-        if(result.value!="0"){
-          
+        if(result.value==null){
+          result.value;
         }
-
-        math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"-";
+        else if(isNaN(result.value.slice(-1))){
+          result.value = result.value.slice(0,-1);
+          result.value+="-";
+        }
       }
       function multiplication(){
         if(isNaN(result.value.slice(-1))){
@@ -280,7 +315,7 @@
         /*math = (math.slice( 0, -1 ))+(result.value).replace( /,/g , "" )+"/";*/
       }
       function equal(){
-        answer = eval(math.slice( 0, -1 )+(result.value).replace( /,/g , "" ));
+        answer = eval(result.value.slice( 0, -1 )+(result.value).replace( /,/g , "" ));
         result.value = Number(answer).toLocaleString(undefined, { maximumFractionDigits: 20 });
         math = "";
       }
