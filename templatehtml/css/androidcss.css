@@ -33,6 +33,7 @@ td {
 }
 
 /* 横用の出力先設定(これ消す可能性有) */
+
 input.result_input_S {
   width: 300px;
   height: 65px;
@@ -44,6 +45,7 @@ input.result_input_S {
 }
 
 /* 四則演算と数字のtable側設定 */
+
 table.LeftCenter_table_S {
   width: 100px;
   height: 80px;
@@ -53,7 +55,9 @@ table.LeftCenter_table_S {
   border-collapse: collapse;
   border-spacing: -2px;
 }
+
 /* INV、RADなどの演算のtable側設定 */
+
 table.Right_table_S {
   width: 55px;
   height: 70px;
@@ -65,6 +69,7 @@ table.Right_table_S {
 }
 
 /* 数字ボタン設定 */
+
 button.number_button_S {
   background-color: #2E2E2E;
   color: white;
@@ -75,7 +80,9 @@ button.number_button_S {
   padding: 0px, 0px, 0px, 0px;
   outline: none;
 }
+
 /* ？ */
+
 button.nonnumber_button_S {
   background-color: #2E2E2E;
   color: white;
@@ -87,6 +94,8 @@ button.nonnumber_button_S {
   height: 65px;
   font-size: 14px;
 }
+
+/* 四則演算ボタン設定 */
 
 button.operator_button_S {
   background-color: grey;
@@ -100,6 +109,8 @@ button.operator_button_S {
   font-size: 12px;
 }
 
+/* ？ */
+
 button.nonoperator_button_S {
   background-color: grey;
   border: 0px;
@@ -110,6 +121,8 @@ button.nonoperator_button_S {
   padding: 0px;
   outline: 0px;
 }
+
+/* Deleteボタン用設定 */
 
 button.DELETEorCLEAR_button_S {
   background-color: grey;
@@ -123,6 +136,8 @@ button.DELETEorCLEAR_button_S {
   font-size: 12px;
 }
 
+/* INV、RADなどの演算ボタン設定 */
+
 button.operator2_button_S {
   background-color: #00FFFF;
   border: 0px;
@@ -135,11 +150,15 @@ button.operator2_button_S {
   font-size: 12px;
 }
 
+/* ？ */
+
 .clearText {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
 }
+
+/* ？ */
 
 div.cluc_S {
   width: 100%;
@@ -163,9 +182,11 @@ div.cluc_S {
 /* --------------------------ここからAndroid縦画面用 */
 
 @media screen and (max-width: 500px) {
+  /* 縦画面時、表示 */
   .sp_tate {
     display: block;
   }
+  /* 横画面時、非表示 */
   .sp_yoko {
     display: none;
   }
@@ -244,4 +265,4 @@ div.cluc_S {
   }
 }
 
-/* --------------------------ここからAndroid縦画面用 */
+/* --------------------------ここまでAndroid縦画面用 */
