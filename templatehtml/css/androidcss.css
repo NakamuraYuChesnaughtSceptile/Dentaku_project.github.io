@@ -1,6 +1,15 @@
 @charset "UTF-8";
 @import url("common.css");
-/* 横画面用 */
+/* ここからお願いします */
+
+/* サンプルとして判定内にどのように書くか記述しておいたので 
+    使用する時は背景の色や文字の大きさの削除お願いします。*/
+
+/* --------------------------ここからPC用and Android横画面用 */
+
+body{
+  background:#2E2E2E;
+}
 
 .sp_tate {
   display: none;
@@ -8,21 +17,6 @@
 
 .sp_yoko {
   display: block;
-}
-
-/* 縦画面用*/
-
-@media screen and (max-width: 500px) {
-  .sp_tate {
-    display: block;
-  }
-  .sp_yoko {
-    display: none;
-  }
-}
-
-main {
-  background-color: #2E2E2E;
 }
 
 input.result_input_V {
@@ -306,3 +300,18 @@ div.cluc_S {
   display: flex;
   justify-content: space-around;
 }
+
+/* --------------------------ここまでPC用and Android横画面用 */
+
+/* --------------------------ここからAndroid縦画面用 */
+
+@media screen and (max-width: 500px) {
+  .sp_tate {
+    display: block;
+  }
+  .sp_yoko {
+    display: none;
+  }
+}
+
+/* --------------------------ここからAndroid縦画面用 */
