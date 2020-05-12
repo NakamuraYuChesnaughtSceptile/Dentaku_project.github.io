@@ -11,14 +11,15 @@ body{
   background:#2E2E2E;
 }
 
+/* 縦画面時、非表示 */
 .sp_tate {
   display: none;
 }
-
+/* 横画面時、表示 */
 .sp_yoko {
   display: block;
 }
-
+/* 出力先 */
 input.result_input_V {
   margin-top: 20px;
   margin-bottom: 0px;
@@ -27,7 +28,7 @@ input.result_input_V {
   font-size: 17px;
   text-align: right;
 }
-
+/* 縦画面時の入力ボタン */
 table.number_table_V {
   width: 100px;
   height: 395px;
@@ -38,7 +39,7 @@ table.number_table_V {
   border-collapse: collapse;
   border-spacing: -2px;
 }
-
+/* 演算子用テーブル */
 table.operator_table_V {
   width: 75px;
   height: 395px;
@@ -49,7 +50,7 @@ table.operator_table_V {
   border-collapse: collapse;
   border-spacing: 0px;
 }
-
+/* 縦画面時の横にある水色の縦棒 */
 table.bar_table_V {
   width: 30px;
   height: 399px;
@@ -57,48 +58,37 @@ table.bar_table_V {
   padding: 0px;
   border-collapse: collapse;
 }
-
-.row input {
-  width: 85px;
-  height: 85px;
-}
-
-tr {
-  margin: 0px;
-  border-collapse: collapse;
-  border-spacing: 0px;
-}
-
+/* tableの枠線を消す用 */
 td {
   border-collapse: collapse;
   margin: 0px;
   padding: 0px;
   border-spacing: 0px;
 }
-
-td.number_td_V {
+/* 必要なしの可能性 */
+/* td.number_td_V {
   margin-top: -50px;
   padding: 0px;
-}
+} */
 
-td.DELETEorCLEAR_td_V {
+/* td.DELETEorCLEAR_td_V {
   width: 70px;
   margin: 0px;
   height: 75px;
-}
+} */
 
-td.operator_td_V {
+/* td.operator_td_V {
   width: 75px;
   height: 75px;
   margin: 0px;
   padding: 0px;
-}
+} */
 
-td.bar.td_V {
+/* td.bar.td_V {
   margin: 0px;
   padding: 0px;
-}
-
+} */
+/* 数字ボタン0~9の設定 */
 button.number_button_V {
   width: 90px;
   height: 80px;
@@ -110,7 +100,7 @@ button.number_button_V {
   font-size: 30px;
   outline: 0px;
 }
-
+/* 四則演算とDeleteボタン設定 */
 button.DELETEorCLEAR_button_V {
   width: 75px;
   height: 87px;
