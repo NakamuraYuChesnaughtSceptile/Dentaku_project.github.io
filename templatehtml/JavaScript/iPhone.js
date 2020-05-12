@@ -1,4 +1,6 @@
 var previousButton; //前に押下したボタンを保存するグローバル変数
+var numArray = [];
+var arithArray = [];
 
 //  ↓呼び出す処理↓
 function numberClick(num){
@@ -14,50 +16,63 @@ function numberClick(num){
 }
 function clearClick(){
     var clear = new Clear();
-    
-
     clear.ClearProcess();
 
     previousButton　= "clear";
 }
 function pmClick(){
     var pmProcess = new PlusMinus();
-    
     pmProcess.plusMinusProcess();
 
     previousButton　= "plusminus";
 }
 function percentClick(){
-    var percent = new Percent();
-    
-    
+    var percent = new Percent();    
     percent.PercentProcess();
 
     previousButton　= "percent";
 }
-function arithClick(){
-    var arithmetic = new Arithmetic();
+function arithClick(arith){
+    $('.arithmetic').removeClass('active');
+    $(this).toggleClass('active');
+
+    var arithmetic = new Arithmetic(arith);
+    arithmetic.arithmeticProcess();
     previousButton　= "arithmetic";
 }
 function equalClick(){
     var equal = new Calculation();
+    equal.calculationProcess();
+
     previousButton　= "equal";
 }
 //  ↑呼び出す処理ここまで↑
 
 //全体の処理,格納
 class Main{
-    #number = [];
-    #arithmetic = [];
+    number = [];
+    arithmetic = [];
 
     //配列に数字を追加
     setNumber(num){
-        this.#number.push(num);
+        numArray.push(num);
+        console.log(numArray[0]);
     }
     
     //配列に演算子を追加
     setArithmetic(arith){
-        this.#arithmetic.push(arith);
+        arithArray.push(arith);
+        console.log(arithArray[0]);
+    }
+
+    getNumberLast(){
+        return numArray[numArray.length - 1];
+    }
+
+    getArithmeticLast(){
+        console.log(arithArray[(arithArray).length - 1]);
+        console.log(arithArray.length - 1);
+        return arithArray[arithArray.length - 1];
     }
 }
 
@@ -67,6 +82,7 @@ class Number{
         this.keyNumber = keynum.value;
     }
     NumberProcess(){
+        console.log(previousButton);
         var window = new displayWindow();
         var result = window.getResult();
         var clear = new Clear();
@@ -122,8 +138,29 @@ class Digit{
 
 //演算子キー処理
 class Arithmetic{
-    constructor(){
+    constructor(keyArith){
+        this.keyArithmetic = keyArith;
+    }
+    arithmeticProcess(){
+        var window = new displayWindow();
+        var main = new Main();
+        var calculation = new Calculation();
 
+        var result = window.getResult();
+        var lastArith = main.getArithmeticLast();
+
+        main.setNumber(result);
+
+        if(this.keyArithmetic == "*"||this.keyArithmetic == "/"){
+            if(lastArith == "*" || lastArith == "/"){
+                calculation.calculationProcess();
+            }
+        }else if((numArray).length >= 2&&previousButton !== "equal"){
+            console.log("koko");
+            calculation.calculationProcess();
+        }
+        //配列にセット
+        main.setArithmetic(this.keyArithmetic);
     }
 }
 
@@ -161,6 +198,8 @@ class Clear{
     ClearProcess(){
         //ボタンの字の判定
         if(this.clear == "AC"){
+            numArray = [];
+            arithArray = [];
             result.value = 0;//表示窓の初期化
         }else{
             result.value = 0;
@@ -177,7 +216,34 @@ class Clear{
 
 //計算処理
 class Calculation{
+    formula = "";
+    answer = "";
+    calculationProcess(){
+        var main = new Main();
+        var window = new displayWindow();
+        var lastnum = window.getResult();
 
+        if(previousButton == "equal"){
+            this.formula = this.formula + main.getArithmeticLast() + main.getNumberLast();
+            answer = eval(this.formula);
+            window.setResult(this.answer);
+        }else{
+            console.log("aaaaaaaaa")
+            for(var i=0;i < arithArray.length;i++){
+                this.formula = this.formula + numArray[i] + arithArray[i];
+                console.log("a");
+            }
+            this.formula = this.formula + lastnum;
+            this.answer = eval(this.formula);
+            window.setResult(this.answer);
+        }
+    }
+    formulaClear(){
+        formula = "";
+    }
+    answerClear(){
+        answer = "";
+    }
 }
 
 
