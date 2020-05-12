@@ -34,13 +34,14 @@ function percentClick(){
 }
 function arithClick(arith){
     $('.arithmetic').removeClass('active');
-    $(this).toggleClass('active');
+    $(arith).toggleClass('active');
 
-    var arithmetic = new Arithmetic(arith);
+    var arithmetic = new Arithmetic(arith.name);
     arithmetic.arithmeticProcess();
     previousButton　= "arithmetic";
 }
 function equalClick(){
+    $('.arithmetic').removeClass('active');
     var equal = new Calculation();
     equal.calculationProcess();
 
@@ -198,6 +199,7 @@ class Clear{
     ClearProcess(){
         //ボタンの字の判定
         if(this.clear == "AC"){
+            $('.arithmetic').removeClass('active');
             numArray = [];
             arithArray = [];
             result.value = 0;//表示窓の初期化
