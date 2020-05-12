@@ -27,7 +27,7 @@
         <td><input type="button" class ="sub" value="AC" id = "clear" onclick="clearClick()"></td>
         <td><input type="button" class ="sub" value="+/-" onclick="pmClick()"></td>
         <td><input type="button" class ="sub" value="%" onclick="percentClick()"></td>
-        <td><input type="button" class ="arithmetic" value="÷" onclick="division()"></td>
+        <td><input type="button" class ="arithmetic" value="÷" onclick="arithClick('/')"></td>
       </tr>
       <tr>
         <td><input type="button" class ="none" value="2nd" onclick=""></td>
@@ -39,7 +39,7 @@
         <td><input type="button" class ="num" value="7" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="8" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="9" onclick="numberClick(this)"></td>
-        <td><input type="button" class ="arithmetic" value="×" onclick="multiplication()"></td>
+        <td><input type="button" class ="arithmetic" value="×" onclick="arithClick('*')"></td>
       </tr>
       <tr>
         <td><input type="button" class ="none" value="1/x" onclick=""></td>
@@ -51,7 +51,7 @@
         <td><input type="button" class ="num" value="4" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="5" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="6" onclick="numberClick(this)"></td>
-        <td><input type="button" class ="arithmetic" value="－" onclick="subtraction()"></td>
+        <td><input type="button" class ="arithmetic" value="－" onclick="arithClick('-')"></td>
       </tr>
       <tr>
         <td><input type="button" class ="none" value="x!" onclick=""></td>
@@ -63,7 +63,7 @@
         <td><input type="button" class ="num" value="1" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="2" onclick="numberClick(this)"></td>
         <td><input type="button" class ="num" value="3" onclick="numberClick(this)"></td>
-        <td><input type="button" class ="arithmetic" value="＋" onclick="addition()"></td>
+        <td><input type="button" class ="arithmetic" value="＋" onclick="arithClick('+')"></td>
       </tr>
     <tr>
         <td><input type="button" class ="none" value="Rad" onclick=""></td>
@@ -73,8 +73,8 @@
         <td><input type="button" class ="none" value="π" onclick=""></td>
         <td><input type="button" class ="none" value="Rand" onclick=""></td>
         <td colspan="2"><input type="button" class ="num" id = "zero" value="0" onclick="numberClick(this)"></td>
-        <td><input type="button" class ="num" value="." onclick="pointClick()"></td>
-        <td><input type="button" class ="equal" value="＝" onclick="equal()"></td>
+        <td><input type="button" class ="num" value="." onclick="numberClick(this)"></td>
+        <td><input type="button" class ="equal" value="＝" onclick="equalClick()"></td>
     </tr>
   </table>
   </main>
