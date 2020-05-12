@@ -43,6 +43,10 @@ input.result_input_S {
   font-size: 17px;
   text-align: right;
 }
+/* 出力の文字の大きさ */
+#result{
+ font-size: 36px;
+}
 
 /* 四則演算と数字のtable側設定 */
 
@@ -81,8 +85,6 @@ button.number_button_S {
   outline: none;
 }
 
-/* ？ */
-
 button.nonnumber_button_S {
   background-color: #2E2E2E;
   color: white;
@@ -108,8 +110,6 @@ button.operator_button_S {
   outline: 0px;
   font-size: 12px;
 }
-
-/* ？ */
 
 button.nonoperator_button_S {
   background-color: grey;
@@ -150,15 +150,12 @@ button.operator2_button_S {
   font-size: 12px;
 }
 
-/* ？ */
 
 .clearText {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
 }
-
-/* ？ */
 
 div.cluc_S {
   width: 100%;
