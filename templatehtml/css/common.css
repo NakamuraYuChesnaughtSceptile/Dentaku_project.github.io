@@ -17,6 +17,7 @@ body {
 
 @media screen and (max-width: 500px) {
   body {
-    background: red;
+    position: absolute;
+    bottom: 30px;
   }
 }

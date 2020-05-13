@@ -179,6 +179,11 @@ div.cluc_S {
 /* --------------------------ここからAndroid縦画面用 */
 
 @media screen and (max-width: 500px) {
+  /* Android縦画面は全体を下に詰める */
+  body{
+    width: 100%;
+    bottom: 0;
+  }
   /* 縦画面時、表示 */
   .sp_tate {
     display: block;
