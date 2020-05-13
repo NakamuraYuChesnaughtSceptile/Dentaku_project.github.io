@@ -8,7 +8,7 @@ var arithArray = [];//計算に使う演算子の配列
 function numberClick(num){
     $('.arithmetic').removeClass('active');//押された後演算子ボタンの色を戻す
 
-    var number = new Number(num);
+    var number = new NumberKey(num);
     var digit = new Digit();
 
     //画面に対応した桁数は超えていないか
@@ -85,6 +85,15 @@ class Main{
         return arithArray[arithArray.length - 1];
     }
 
+    //数字の配列の長さを返す
+    getNumberLength(){
+        return numArray.length;
+    }
+    //演算子の配列の長さを返す
+    getArithmeticLength(){
+        return arithArray.length;
+    }
+
     //配列の初期化
     resetArray(){
         numArray = [];
@@ -93,7 +102,7 @@ class Main{
 }
 
 //数字キー処理
-class Number{
+class NumberKey{
     constructor(keynum){
         this.keyNumber = keynum.value;
     }
@@ -143,6 +152,7 @@ class Digit{
         var result = window.getResult();
         var resultMolding = result.replace(/[^0-9]/g, '');//－や小数点を排除し、数字のみに置き換える
         
+
         //画面サイズの判定
         if(this.windowHeight > this.windowWidth){
             //縦画面時の桁数判定
@@ -152,6 +162,7 @@ class Digit{
             }else{
                 return false;
             }
+            
         }else{
             //横画面時の桁数判定
             if(resultMolding.length < 16){
@@ -159,6 +170,7 @@ class Digit{
             }else{
                 return false;
             }
+            
         }
     }
 
@@ -194,13 +206,13 @@ class Arithmetic{
         main.setNumber(result);
         if(previousButton == "arithmetic"){
             arithArray.pop();
-            arithArray.push(this.keyArithmetic);
+            main.setArithmetic(this.keyArithmetic);
         }else{ 
             if(this.keyArithmetic == "*"||this.keyArithmetic == "/"){
                 if(lastArith == "*" || lastArith == "/"){
                     calculation.calculationProcess();
                 }
-            }else if(numArray.length >= 2&&previousButton !== "equal"){
+            }else if(main.getArithmeticLength() >= 2&&previousButton !== "equal"){
                 calculation.calculationProcess();
             }
         //配列にセット
@@ -269,11 +281,19 @@ class Calculation{
     calculationProcess(){
         var main = new Main();
         var window = new displayWindow();
-        var lastnum = window.getResult();
+        var lastNum = window.getResult();
 
-        if(previousButton == "equal"){
-            main.setNumber(main.getNumberLast());
-            main.setArithmetic(main.getArithmeticLast());
+        if(main.getNumberLength() <= 0){
+            //何もしない
+        }else if(previousButton == "equal"){
+            var arrayNumLast = main.getNumberLast();
+            var arrayArithLast = main.getArithmeticLast();
+
+            main.resetArray();
+            main.setNumber(lastNum);
+
+            main.setNumber(arrayNumLast);
+            main.setArithmetic(arrayArithLast);
 
             this.caluculationRoop();
 
@@ -283,8 +303,8 @@ class Calculation{
 
             this.caluculationRoop();
             
-            this.formula = this.formula + lastnum;
-            main.setNumber(lastnum);
+            this.formula = this.formula + lastNum;
+            main.setNumber(lastNum);
             this.answer = eval(this.formula);
             window.setResult(this.answer);
         }
