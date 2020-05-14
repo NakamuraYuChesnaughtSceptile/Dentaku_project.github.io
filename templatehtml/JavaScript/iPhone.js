@@ -69,7 +69,8 @@ function equalClick(){
 class Main{
     //配列に数字を追加
     setNumber(num){
-        numArray.push(num);
+        numArray.push(num.replace(/[^-0-9.]/g, ''));
+        console.log(numArray[numArray.length-1]);
     }
     
     //配列に演算子を追加
@@ -101,6 +102,11 @@ class Main{
         numArray = [];
         arithArray = [];
     }
+
+    //コンマ区切り
+    CommaSeparated(result){
+        return Number(result).toLocaleString(undefined, { maximumFractionDigits: 20 });
+    }
 }
 
 //数字キー処理
@@ -110,14 +116,17 @@ class NumberKey{
     }
     NumberProcess(){
         var window = new displayWindow();
-        var result = window.getResult();
         var clear = new Clear();
+        var main = new Main();
+        
+        var result = window.getResult();
 
         //押下されたのが0以外の数字か判定
         if(this.keyNumber!=="0"){
             clear.setC();
         }
 
+        //押されたキーが小数点の時の処理
         if(this.keyNumber == "."){
             var pointNum = this.pointProcess(result);
             window.setResult(pointNum);
@@ -127,7 +136,9 @@ class NumberKey{
         }else if(result == "0"　||previousButton == "percent"||previousButton=="equal"||previousButton=="arithmetic"){
             window.setResult(this.keyNumber);
         }else{
-            window.setResult(result+this.keyNumber);
+            var resultMolding = result.replace(/[^0-9.]/g, '');
+            result = main.CommaSeparated(resultMolding+this.keyNumber);
+            window.setResult(result);
         }
     }
 
@@ -303,14 +314,13 @@ class Calculation{
             formula = this.caluculationRoop(formula);
 
             answer = eval(formula+main.getNumberLast());
+            answer = main.CommaSeparated(answer);
             window.setResult(answer);
         }else{
-
-            formula = this.caluculationRoop(formula);
-            
-            formula = formula + lastNum;
             main.setNumber(lastNum);
-            answer = eval(formula);
+            formula = this.caluculationRoop(formula);
+            answer = eval(formula+main.getNumberLast());
+            answer = main.CommaSeparated(answer);
             window.setResult(answer);
         }
     }
