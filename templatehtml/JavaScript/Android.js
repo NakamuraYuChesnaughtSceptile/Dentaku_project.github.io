@@ -1,7 +1,7 @@
 
 //Button押下処理
 class Button_Push{
-    constructor(TextBox_Value,TextBox_Last){
+    constructor(TextBox_Value,TextBox_Last,Result_Value){
         this.TextBox_Value = TextBox_Value;
         this.TextBox_Last = TextBox_Last;
         this.Result_Value = Result_Value;
@@ -81,13 +81,13 @@ class Number_Click extends Button_Push{
             switch(TextBox_Last_Check()){
                 //TextBox最後尾が数値
                 case 'Num' : Switch_Number_Push_N();
-                continue;
+                break;
                 //TextBox最後尾が演算子
                 case 'Ope' : Switch_Number_Push_O();
-                continue;
+                break;
                 //TextBox最後尾が小数点
                 case 'Dec' : Switch_Number_Push_D();
-                continue;
+                break;
             }
             return super.TextBox_Value;
         }
@@ -96,20 +96,20 @@ class Number_Click extends Button_Push{
         if(TextBox_Zero_Check()){
                 super.TextBox_Value = document.getElementsByName('Number');
         }else{
-                super.TextBox_Value = TextBox_Value_Read() += document.getElementsByName('Number');
+                super.TextBox_Value = TextBox_Value_Read() + document.getElementsByName('Number');
         }
     }
     Switch_Number_Push_O(){
-        super.TextBox_Value = TextBox_Value_Read() += document.getElementsByName('Number');
+        super.TextBox_Value = TextBox_Value_Read() + document.getElementsByName('Number');
     }
     Switch_Number_Push_D(){
         DecimalPoint_Fix();
-        super.TextBox_Value = TextBox_Value_Read() += document.getElementsByName('Number');
+        super.TextBox_Value = TextBox_Value_Read() + document.getElementsByName('Number');
     }
 }
 function Number_Function(number){
     var result = number;
-    var Num = new Number_Click(TextBox_Value,TextBox_Last);
+    var Num = new Number_Click();
     document.getElementById('TextBox_Value') = Num.Num_Push();
 }
 
@@ -126,11 +126,11 @@ class Operator_Push extends Button_Push{
         if(TextBox_Null_Check() != false){
             switch(TextBox_Last_Check()){
                 case 'Num' : Switch_Operator_Push_N();
-                continue;
+                break;
                 case 'Dec' : Switch_Operator_Push_D();
-                continue;
+                break;
                 case 'Ope' : Switch_Operator_Push_O();
-                continue;
+                break;
             }
             return super.TextBox_Value;
         }   
@@ -146,7 +146,7 @@ class Operator_Push extends Button_Push{
     }
     Switch_Operator_Push_O(){
         if(TextBox_Value_Read() != "-"){
-            super.TextBox_Value = super.TextBox_Value.slice(0,-1) += document.getElementsByName('operator');
+            super.TextBox_Value = super.TextBox_Value.slice(0,-1) + document.getElementsByName('operator');
         }
     }
     Switch_Operator_Push_D(){
@@ -157,8 +157,8 @@ class Operator_Push extends Button_Push{
 }
 
 function Operator_Function(){
-    var Operator_Push = new Operator_Push(TextBox_Value,TextBox_Last);
-    document.getElementById('TextBox_Value') = Operator_Push.Ope_Push();
+    var Ope = new Operator_Push();
+    document.getElementById('TextBox_Value') = Ope.Ope_Push();
 }
 
 class Calculation extends Button_Push{
@@ -174,13 +174,13 @@ class Calculation extends Button_Push{
             switch(TextBox_Last_Check()){
                 //TextBox最後尾が数値の場合演算処理
                 case 'Num': super.Result_Value = eval(TextBox_Value_Read());
-                continue;
+                break;
                 //TextBox最後尾が小数点の場合
                 case 'Dec' : 
-                continue;
+                break;
                 //TextBox最後尾が文字列の場合
                 case 'Str' :
-                continue;
+                break;
             }
             return super.Result_Value;
         }
@@ -188,8 +188,8 @@ class Calculation extends Button_Push{
 }
 
 function Equal_Function(){
-    var Calculation = new Calculation(TextBox_Value,TextBox_Last,Result_Value);
-    document.getElementById('TextBox_Value') = Calculation.calc();
+    var Cal = new Calculation();
+    document.getElementById('TextBox_Value') = Cal.calc();
 }
 function Point_Click(){
     document.getElementById('TextBox_Value') += ".";
