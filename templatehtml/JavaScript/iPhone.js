@@ -70,7 +70,6 @@ class Main{
     //配列に数字を追加
     setNumber(num){
         numArray.push(num.replace(/[^-0-9.]/g, ''));
-        console.log(numArray[numArray.length-1]);
     }
     
     //配列に演算子を追加
