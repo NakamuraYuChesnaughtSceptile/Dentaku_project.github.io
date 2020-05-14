@@ -14,6 +14,8 @@ function numberClick(num){
     //画面に対応した桁数は超えていないか
     if(digit.DigitProcess()){
         number.NumberProcess();
+    }else if(previousButton=="arithmetic"||previousButton=="equal"){
+        number.NumberProcess();
     }
     
     previousButton　= "number";
@@ -132,10 +134,10 @@ class NumberKey{
     //小数点が連続で打たれない、%,=,演算子を押した後に小数点を押すと0.にする処理
     pointProcess(result){
         var pointNum = result;
-        if(result.indexOf(".") == -1){
-            pointNum = result+".";
-        }else if(previousButton == "percent"||previousButton=="equal"||previousButton=="arithmetic"){
+        if(previousButton == "percent"||previousButton=="equal"||previousButton=="arithmetic"){
             pointNum = "0.";
+        }else if(result.indexOf(".") == -1){
+            pointNum = result+".";
         }
         return pointNum;
     }
@@ -227,7 +229,9 @@ class PlusMinus{
         var window = new displayWindow();
         var result = window.getResult();
 
-        if(result.indexOf("-") !== -1){
+        if(previousButton == "arithmetic"){
+            window.setResult("-0");
+        }else if(result.indexOf("-") !== -1){
             window.setResult(result.replace("-",""));
         }else{
             window.setResult(`-${result}`);
@@ -276,12 +280,13 @@ class Clear{
 
 //計算処理
 class Calculation{
-    formula = "";
-    answer = "";
+    
     calculationProcess(){
         var main = new Main();
         var window = new displayWindow();
         var lastNum = window.getResult();
+        var formula = "";
+        var answer = "";
 
         if(main.getNumberLength() <= 0){
             //何もしない
@@ -295,25 +300,26 @@ class Calculation{
             main.setNumber(arrayNumLast);
             main.setArithmetic(arrayArithLast);
 
-            this.caluculationRoop();
+            formula = this.caluculationRoop(formula);
 
-            this.answer = eval(this.formula+main.getNumberLast());
-            window.setResult(this.answer);
+            answer = eval(formula+main.getNumberLast());
+            window.setResult(answer);
         }else{
 
-            this.caluculationRoop();
+            formula = this.caluculationRoop(formula);
             
-            this.formula = this.formula + lastNum;
+            formula = formula + lastNum;
             main.setNumber(lastNum);
-            this.answer = eval(this.formula);
-            window.setResult(this.answer);
+            answer = eval(formula);
+            window.setResult(answer);
         }
     }
     //計算式を作るループ処理
-    caluculationRoop(){
+    caluculationRoop(formula){
         for(var i=0;i < arithArray.length;i++){
-            this.formula = this.formula + numArray[i] + arithArray[i];
+            formula = formula + numArray[i] + arithArray[i];
         }
+        return formula;
     }
 }
 
