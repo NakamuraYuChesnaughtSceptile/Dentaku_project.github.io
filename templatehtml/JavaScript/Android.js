@@ -4,6 +4,7 @@ class Button_Push{
     constructor(TextBox_Value,TextBox_Last){
         this.TextBox_Value = TextBox_Value;
         this.TextBox_Last = TextBox_Last;
+        this.Result_Value = Result_Value;
     }
 
     //TextBox内値読み込み
@@ -68,9 +69,8 @@ class Button_Push{
 }
 //数値を入力した場合の処理
 class Number_Click extends Button_Push{
-    constructor(TextBox_Value,TextBox_Last){
-        super.TextBox_Value = TextBox_Value;
-        this.TextBox_Last = TextBox_Last;
+    constructor(){
+        super();
     }
     Num_Push(){
         TextBox_Value_Read();
@@ -107,16 +107,16 @@ class Number_Click extends Button_Push{
         super.TextBox_Value = TextBox_Value_Read() += document.getElementsByName('Number');
     }
 }
-function Number_Push(){
-    var Num_Push = new Number_Click(TextBox_Value,TextBox_Last);
-    document.getElementById('TextBox_Value') = Number_Click.Num_Push();
+function Number_Function(number){
+    var result = number;
+    var Num = new Number_Click(TextBox_Value,TextBox_Last);
+    document.getElementById('TextBox_Value') = Num.Num_Push();
 }
 
 //演算子を入力した場合の処理
 class Operator_Push extends Button_Push{
-    constructor(TextBox_Value,TextBox_Last){
-        super.TextBox_Value = TextBox_Value;
-        this.TextBox_Last = TextBox_Last;
+    constructor(){
+        super();
     }
     Ope_Push(){
         //TextBox取得
@@ -151,21 +151,19 @@ class Operator_Push extends Button_Push{
     }
     Switch_Operator_Push_D(){
         DecimalPoint_Fix();
-        super.TextBox_Value = "不正な式です"
+        super.TextBox_Value = "不正な式です";
     }
     
 }
 
-function Operator_Push(){
+function Operator_Function(){
     var Operator_Push = new Operator_Push(TextBox_Value,TextBox_Last);
     document.getElementById('TextBox_Value') = Operator_Push.Ope_Push();
 }
 
 class Calculation extends Button_Push{
-    constructor(TextBox_Value,TextBox_Last,Result_Value){
-        super.TextBox_Value = TextBox_Value;
-        super.TextBox_Last = TextBox_Last;
-        this.Result_Value = Result_Value;
+    constructor(){
+        super();
     }
     calc(){
         //TextBox内値読み込み
@@ -175,7 +173,7 @@ class Calculation extends Button_Push{
         if(this.Check != true){
             switch(TextBox_Last_Check()){
                 //TextBox最後尾が数値の場合演算処理
-                case 'Num': this.Result_Value = eval(TextBox_Value_Read());
+                case 'Num': super.Result_Value = eval(TextBox_Value_Read());
                 continue;
                 //TextBox最後尾が小数点の場合
                 case 'Dec' : 
@@ -184,12 +182,12 @@ class Calculation extends Button_Push{
                 case 'Str' :
                 continue;
             }
-            return this.Result_Value;
+            return super.Result_Value;
         }
     }
 }
 
-function Equal_Push(){
+function Equal_Function(){
     var Calculation = new Calculation(TextBox_Value,TextBox_Last,Result_Value);
     document.getElementById('TextBox_Value') = Calculation.calc();
 }
