@@ -1,5 +1,5 @@
 
-//押下処理
+//Button押下処理
 class Button_Push{
     constructor(TextBox_Value,TextBox_Last){
         this.TextBox_Value = TextBox_Value;
@@ -33,16 +33,19 @@ class Button_Push{
     //最後尾文字の種類判定
     TextBox_Last_Check(){
         var Last_Type;
+        //小数点
         if(TextBox_Slice() == "."){
             Last_type = Dec;
+        //数値
         }else if(TextBox_Slice() == number){
             Last_Type = Num;
+        //演算子
         }else if(TextBox_Slice() == string){
             Last_Type = Str;
         }
         return Last_Type;
     }
-    //TextBox内の値が0か
+    //TextBox内の値が0のみか
     TextBox_Zero_Check(){
         var Zero_TF;
         if(TextBoxValue_Read() == 0){
@@ -104,6 +107,11 @@ class Number_Click extends Button_Push{
         super.TextBox_Value = TextBox_Value_Read() += document.getElementsByName('Number');
     }
 }
+function Number_Push(){
+    var Num_Push = new Number_Click(TextBox_Value,TextBox_Last);
+    document.getElementById('TextBox_Value') = Number_Click.Num_Push();
+}
+
 //演算子を入力した場合の処理
 class Operator_Push extends Button_Push{
     constructor(TextBox_Value,TextBox_Last){
@@ -148,6 +156,11 @@ class Operator_Push extends Button_Push{
     
 }
 
+function Operator_Push(){
+    var Operator_Push = new Operator_Push(TextBox_Value,TextBox_Last);
+    document.getElementById('TextBox_Value') = Operator_Push.Ope_Push();
+}
+
 class Calculation extends Button_Push{
     constructor(TextBox_Value,TextBox_Last,Result_Value){
         super.TextBox_Value = TextBox_Value;
@@ -174,4 +187,12 @@ class Calculation extends Button_Push{
             return this.Result_Value;
         }
     }
+}
+
+function Equal_Push(){
+    var Calculation = new Calculation(TextBox_Value,TextBox_Last,Result_Value);
+    document.getElementById('TextBox_Value') = Calculation.calc();
+}
+function Point_Click(){
+    document.getElementById('TextBox_Value') += ".";
 }
