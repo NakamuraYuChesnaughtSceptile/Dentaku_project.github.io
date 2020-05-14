@@ -12,10 +12,10 @@ function numberClick(num){
     var digit = new Digit();
 
     //画面に対応した桁数は超えていないか
-    if(digit.DigitProcess()){
-        number.NumberProcess();
+    if(digit.digitProcess()){
+        number.number_Pushpush();
     }else if(previousButton=="arithmetic"||previousButton=="equal"){
-        number.NumberProcess();
+        number.number_Pushpush();
     }
     
     previousButton　= "number";
@@ -24,7 +24,7 @@ function numberClick(num){
 //AC,Cキー
 function clearClick(){
     var clear = new Clear();
-    clear.ClearProcess();
+    clear.clearProcess();
 
     previousButton　= "clear";
 }
@@ -40,7 +40,7 @@ function pmClick(){
 //%キー
 function percentClick(){
     var percent = new Percent();    
-    percent.PercentProcess();
+    percent.percentProcess();
 
     previousButton　= "percent";
 }
@@ -104,7 +104,7 @@ class Main{
     }
 
     //コンマ区切り
-    CommaSeparated(result){
+    commaSeparated(result){
         return Number(result).toLocaleString(undefined, { maximumFractionDigits: 20 });
     }
 }
@@ -114,7 +114,7 @@ class NumberKey{
     constructor(keynum){
         this.keyNumber = keynum.value;
     }
-    NumberProcess(){
+    number_Pushpush(){
         var window = new displayWindow();
         var clear = new Clear();
         var main = new Main();
@@ -137,7 +137,7 @@ class NumberKey{
             window.setResult(this.keyNumber);
         }else{
             var resultMolding = result.replace(/[^0-9.]/g, '');
-            result = main.CommaSeparated(resultMolding+this.keyNumber);
+            result = main.commaSeparated(resultMolding+this.keyNumber);
             window.setResult(result);
         }
     }
@@ -160,7 +160,7 @@ class Digit{
         this.windowHeight = window.innerHeight;//画面の縦を取得
         this.windowWidth = window.innerWidth;//画面の横を取得
     }
-    DigitProcess(){
+    digitProcess(){
         var window = new displayWindow();
         var result = window.getResult();
         var resultMolding = result.replace(/[^0-9]/g, '');//－や小数点を排除し、数字のみに置き換える
@@ -252,7 +252,7 @@ class PlusMinus{
 
 //%キー処理
 class Percent{
-    PercentProcess(){
+    percentProcess(){
         var window = new displayWindow();
         var result = window.getResult();
 
@@ -267,7 +267,7 @@ class Clear{
         var clearData = document.getElementById( "clear" );
         this.clear = clearData.value;
     }
-    ClearProcess(){
+    clearProcess(){
         var main = new Main();
         //ボタンの字の判定
         if(this.clear == "AC"){
@@ -314,13 +314,13 @@ class Calculation{
             formula = this.caluculationRoop(formula);
 
             answer = eval(formula+main.getNumberLast());
-            answer = main.CommaSeparated(answer);
+            answer = main.commaSeparated(answer);
             window.setResult(answer);
         }else{
             main.setNumber(lastNum);
             formula = this.caluculationRoop(formula);
             answer = eval(formula+main.getNumberLast());
-            answer = main.CommaSeparated(answer);
+            answer = main.commaSeparated(answer);
             window.setResult(answer);
         }
     }
