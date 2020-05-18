@@ -10,7 +10,7 @@ class Button_Push{
     //TextBox内値読み込み
     TextBox_Value_Read(){
         var TextBox_Value;
-        TextBox_Value = document.getElementById("TextBox.Value");
+        TextBox_Value = document.getElementById("TextBox_Value");
         return TextBox_Value;
     }
     //TextBoxがnullか
@@ -110,7 +110,7 @@ class Number_Click extends Button_Push{
 function Number_Function(number){
     var result = number;
     var Num = new Number_Click();
-    document.getElementById('TextBox_Value') = Num.Num_Push();
+    TextBox_Value.value = Num.Num_Push();
 }
 
 //演算子を入力した場合の処理
@@ -158,7 +158,7 @@ class Operator_Push extends Button_Push{
 
 function Operator_Function(){
     var Ope = new Operator_Push();
-    document.getElementById('TextBox_Value') = Ope.Ope_Push();
+    TextBox_Value.value = Ope.Ope_Push();
 }
 
 class Calculation extends Button_Push{
@@ -189,8 +189,8 @@ class Calculation extends Button_Push{
 
 function Equal_Function(){
     var Cal = new Calculation();
-    document.getElementById('TextBox_Value') = Cal.calc();
+    TextBox_Value.value = Cal.calc();
 }
 function Point_Click(){
-    document.getElementById('TextBox_Value') += ".";
+    TextBox_Value.value += ".";
 }
