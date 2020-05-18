@@ -188,15 +188,15 @@ class Digit{
 
     //文字数が増えたときにフォントサイズを変える処理
     fontSizeProcess(length){
-                $('.result').removeClass('resultText1');
-                $('.result').removeClass('resultText2');
-                $('.result').removeClass('resultText3');
+                $('.output').removeClass('resultText1');
+                $('.output').removeClass('resultText2');
+                $('.output').removeClass('resultText3');
                 switch (length){
-                    case 7: $('.result').toggleClass('resultText1');
+                    case 6: $('.output').toggleClass('resultText1');
                             break;
-                    case 8: $('.result').toggleClass('resultText2');
+                    case 7: $('.output').toggleClass('resultText2');
                             break;
-                    case 9: $('.result').toggleClass('resultText3');
+                    case 8: $('.output').toggleClass('resultText3');
                             break;
                 }
     }
