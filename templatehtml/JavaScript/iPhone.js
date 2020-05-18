@@ -13,9 +13,9 @@ function numberClick(num){
 
     //画面に対応した桁数は超えていないか
     if(digit.digitProcess(result.value)){
-        number.number_Pushpush();
+        number.number_Push();
     }else if(previousButton=="arithmetic"||previousButton=="equal"){
-        number.number_Pushpush();
+        number.number_Push();
     }
     
     previousButton　= "number";
@@ -65,6 +65,9 @@ function equalClick(){
 }
 //  ↑呼び出す処理ここまで↑
 
+
+
+
 //全体の処理,格納
 class Main{
     //配列に数字を追加
@@ -113,7 +116,7 @@ class NumberKey{
     constructor(keynum){
         this.keyNumber = keynum.value;
     }
-    number_Pushpush(){
+    number_Push(){
         var window = new displayWindow();
         var clear = new Clear();
         var main = new Main();
@@ -124,6 +127,9 @@ class NumberKey{
         //押下されたのが0以外の数字か判定
         if(this.keyNumber!=="0"){
             clear.setC();
+        }else{
+            window.setResult(result+"0");
+            return;
         }
 
         //押されたキーが小数点の時の処理
@@ -131,6 +137,7 @@ class NumberKey{
             digit.fontSizeRemove();
             var pointNum = this.pointProcess(result);
             window.setResult(pointNum);
+        //表示されているのが-0かの判定
         }else if(result == "-0"){
             digit.fontSizeRemove();
             window.setResult(`-${this.keyNumber}`);
@@ -314,9 +321,12 @@ class Calculation{
         var formula = "";
         var answer = "";
 
-        if(main.getNumberLength() <= 0){
+        if(main.getNumberLength() <= 0　|| main.getArithmeticLength() <= 0){
             //何もしない
-        }else if(previousButton == "equal"){
+            return;
+        }
+
+        if(previousButton == "equal"){
             var arrayNumLast = main.getNumberLast();
             var arrayArithLast = main.getArithmeticLast();
 
@@ -328,11 +338,13 @@ class Calculation{
         }else{
             main.setNumber(lastNum);
         }
-            formula = this.caluculationRoop(formula);
-            answer = eval(formula+main.getNumberLast());
-            answer = main.commaSeparated(answer);
-            answer = this.resultExponentiation(answer);
-            window.setResult(answer);
+
+        formula = this.caluculationRoop(formula);
+        answer = eval(formula+main.getNumberLast());
+        answer = main.commaSeparated(answer);
+        answer = this.resultExponentiation(answer);
+        window.setResult(answer);
+            
     }
     //計算式を作るループ処理
     caluculationRoop(formula){
@@ -342,6 +354,7 @@ class Calculation{
         return formula;
     }
 
+    //桁数を超えたとき10の何乗かを表示
     resultExponentiation(answer){
         var digit = new Digit();
         if(digit.digitProcess(answer)){
@@ -352,7 +365,6 @@ class Calculation{
             for(var i = 0;Math.floor(answer) >= 9;i++){
                 answer = answer/10;
                 cnt++;
-                console.log(cnt);
             }
             //四捨五入する桁数の指定
             if(digit.windowSize()){
@@ -360,8 +372,15 @@ class Calculation{
             }else{
                 var aaa = Math.pow(10, 12);
             }
-            answer = (Math.round(answer*aaa)/aaa);
-            return answer+"e"+cnt;
+
+            //丸め誤差対策
+            if(cnt == 0){
+                answer = (Math.round(answer*aaa)/aaa);
+                return answer;
+            }else{
+                answer = (Math.round(answer*aaa)/aaa);
+                return answer+"e"+cnt;
+            }
         }
     }
 }
