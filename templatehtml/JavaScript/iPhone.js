@@ -117,6 +117,7 @@ class NumberKey{
         var window = new displayWindow();
         var clear = new Clear();
         var main = new Main();
+        var digit = new Digit();
         
         var result = window.getResult();
 
@@ -127,12 +128,15 @@ class NumberKey{
 
         //押されたキーが小数点の時の処理
         if(this.keyNumber == "."){
+            digit.fontSizeRemove();
             var pointNum = this.pointProcess(result);
             window.setResult(pointNum);
         }else if(result == "-0"){
+            digit.fontSizeRemove();
             window.setResult(`-${this.keyNumber}`);
         //↓表示されているのが0または、前に押されたのが演算子か=か％かを判定↓
         }else if(result == "0"　||previousButton == "percent"||previousButton=="equal"||previousButton=="arithmetic"){
+            digit.fontSizeRemove();
             window.setResult(this.keyNumber);
         }else{
             var resultMolding = result.replace(/[^0-9.]/g, '');
@@ -188,9 +192,7 @@ class Digit{
 
     //文字数が増えたときにフォントサイズを変える処理
     fontSizeProcess(length){
-                $('.output').removeClass('resultText1');
-                $('.output').removeClass('resultText2');
-                $('.output').removeClass('resultText3');
+        this.fontSizeRemove();
                 switch (length){
                     case 6: $('.output').toggleClass('resultText1');
                             break;
@@ -199,6 +201,12 @@ class Digit{
                     case 8: $('.output').toggleClass('resultText3');
                             break;
                 }
+    }
+
+    fontSizeRemove(){
+        $('.output').removeClass('resultText1');
+        $('.output').removeClass('resultText2');
+        $('.output').removeClass('resultText3');
     }
 }
 
@@ -268,6 +276,8 @@ class Clear{
     }
     clearProcess(){
         var main = new Main();
+        var digit = new Digit();
+        digit.fontSizeRemove();
         //ボタンの字の判定
         if(this.clear == "AC"){
             $('.arithmetic').removeClass('active');//ACの時のみ演算子の色をもとに戻す
