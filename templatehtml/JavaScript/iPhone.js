@@ -12,7 +12,7 @@ function numberClick(num){
     var digit = new Digit();
 
     //画面に対応した桁数は超えていないか
-    if(digit.digitProcess()){
+    if(digit.digitProcess(result.value)){
         number.number_Pushpush();
     }else if(previousButton=="arithmetic"||previousButton=="equal"){
         number.number_Pushpush();
@@ -163,14 +163,12 @@ class Digit{
         this.windowHeight = window.innerHeight;//画面の縦を取得
         this.windowWidth = window.innerWidth;//画面の横を取得
     }
-    digitProcess(){
-        var window = new displayWindow();
-        var result = window.getResult();
+    digitProcess(result){
         var resultMolding = result.replace(/[^0-9]/g, '');//－や小数点を排除し、数字のみに置き換える
         
 
         //画面サイズの判定
-        if(this.windowHeight > this.windowWidth){
+        if(this.windowSize()){
             //縦画面時の桁数判定
             if(resultMolding.length < 9){
                 this.fontSizeProcess(resultMolding.length);
@@ -202,11 +200,19 @@ class Digit{
                             break;
                 }
     }
-
+    //上記メソッドで追加したクラスの削除
     fontSizeRemove(){
         $('.output').removeClass('resultText1');
         $('.output').removeClass('resultText2');
         $('.output').removeClass('resultText3');
+    }
+    //縦画面か横画面かを判定
+    windowSize(){
+        if(this.windowHeight > this.windowWidth){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 
@@ -319,19 +325,14 @@ class Calculation{
 
             main.setNumber(arrayNumLast);
             main.setArithmetic(arrayArithLast);
-
-            formula = this.caluculationRoop(formula);
-
-            answer = eval(formula+main.getNumberLast());
-            answer = main.commaSeparated(answer);
-            window.setResult(answer);
         }else{
             main.setNumber(lastNum);
+        }
             formula = this.caluculationRoop(formula);
             answer = eval(formula+main.getNumberLast());
             answer = main.commaSeparated(answer);
+            answer = this.resultExponentiation(answer);
             window.setResult(answer);
-        }
     }
     //計算式を作るループ処理
     caluculationRoop(formula){
@@ -339,6 +340,29 @@ class Calculation{
             formula = formula + numArray[i] + arithArray[i];
         }
         return formula;
+    }
+
+    resultExponentiation(answer){
+        var digit = new Digit();
+        if(digit.digitProcess(answer)){
+            return answer;
+        }else{
+            var cnt = 0;
+            answer = answer.replace(/[^-0-9.]/g, '');
+            for(var i = 0;Math.floor(answer) >= 9;i++){
+                answer = answer/10;
+                cnt++;
+                console.log(cnt);
+            }
+            //四捨五入する桁数の指定
+            if(digit.windowSize()){
+                var aaa = Math.pow(10, 5);
+            }else{
+                var aaa = Math.pow(10, 12);
+            }
+            answer = (Math.round(answer*aaa)/aaa);
+            return answer+"e"+cnt;
+        }
     }
 }
 
