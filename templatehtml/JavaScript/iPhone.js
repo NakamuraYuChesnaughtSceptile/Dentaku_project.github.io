@@ -12,10 +12,10 @@ function numberClick(num){
     var digit = new Digit();
 
     //画面に対応した桁数は超えていないか
-    if(digit.digitProcess()){
-        number.number_Pushpush();
+    if(digit.digitProcess(result.value)){
+        number.number_Push();
     }else if(previousButton=="arithmetic"||previousButton=="equal"){
-        number.number_Pushpush();
+        number.number_Push();
     }
     
     previousButton　= "number";
@@ -65,6 +65,9 @@ function equalClick(){
 }
 //  ↑呼び出す処理ここまで↑
 
+
+
+
 //全体の処理,格納
 class Main{
     //配列に数字を追加
@@ -113,26 +116,34 @@ class NumberKey{
     constructor(keynum){
         this.keyNumber = keynum.value;
     }
-    number_Pushpush(){
+    number_Push(){
         var window = new displayWindow();
         var clear = new Clear();
         var main = new Main();
+        var digit = new Digit();
         
         var result = window.getResult();
 
         //押下されたのが0以外の数字か判定
         if(this.keyNumber!=="0"){
             clear.setC();
+        }else{
+            window.setResult(result+"0");
+            return;
         }
 
         //押されたキーが小数点の時の処理
         if(this.keyNumber == "."){
+            digit.fontSizeRemove();
             var pointNum = this.pointProcess(result);
             window.setResult(pointNum);
+        //表示されているのが-0かの判定
         }else if(result == "-0"){
+            digit.fontSizeRemove();
             window.setResult(`-${this.keyNumber}`);
         //↓表示されているのが0または、前に押されたのが演算子か=か％かを判定↓
         }else if(result == "0"　||previousButton == "percent"||previousButton=="equal"||previousButton=="arithmetic"){
+            digit.fontSizeRemove();
             window.setResult(this.keyNumber);
         }else{
             var resultMolding = result.replace(/[^0-9.]/g, '');
@@ -159,14 +170,12 @@ class Digit{
         this.windowHeight = window.innerHeight;//画面の縦を取得
         this.windowWidth = window.innerWidth;//画面の横を取得
     }
-    digitProcess(){
-        var window = new displayWindow();
-        var result = window.getResult();
+    digitProcess(result){
         var resultMolding = result.replace(/[^0-9]/g, '');//－や小数点を排除し、数字のみに置き換える
         
 
         //画面サイズの判定
-        if(this.windowHeight > this.windowWidth){
+        if(this.windowSize()){
             //縦画面時の桁数判定
             if(resultMolding.length < 9){
                 this.fontSizeProcess(resultMolding.length);
@@ -188,9 +197,7 @@ class Digit{
 
     //文字数が増えたときにフォントサイズを変える処理
     fontSizeProcess(length){
-                $('.output').removeClass('resultText1');
-                $('.output').removeClass('resultText2');
-                $('.output').removeClass('resultText3');
+        this.fontSizeRemove();
                 switch (length){
                     case 6: $('.output').toggleClass('resultText1');
                             break;
@@ -199,6 +206,20 @@ class Digit{
                     case 8: $('.output').toggleClass('resultText3');
                             break;
                 }
+    }
+    //上記メソッドで追加したクラスの削除
+    fontSizeRemove(){
+        $('.output').removeClass('resultText1');
+        $('.output').removeClass('resultText2');
+        $('.output').removeClass('resultText3');
+    }
+    //縦画面か横画面かを判定
+    windowSize(){
+        if(this.windowHeight > this.windowWidth){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 
@@ -268,6 +289,8 @@ class Clear{
     }
     clearProcess(){
         var main = new Main();
+        var digit = new Digit();
+        digit.fontSizeRemove();
         //ボタンの字の判定
         if(this.clear == "AC"){
             $('.arithmetic').removeClass('active');//ACの時のみ演算子の色をもとに戻す
@@ -298,9 +321,12 @@ class Calculation{
         var formula = "";
         var answer = "";
 
-        if(main.getNumberLength() <= 0){
+        if(main.getNumberLength() <= 0　|| main.getArithmeticLength() <= 0){
             //何もしない
-        }else if(previousButton == "equal"){
+            return;
+        }
+
+        if(previousButton == "equal"){
             var arrayNumLast = main.getNumberLast();
             var arrayArithLast = main.getArithmeticLast();
 
@@ -309,19 +335,16 @@ class Calculation{
 
             main.setNumber(arrayNumLast);
             main.setArithmetic(arrayArithLast);
-
-            formula = this.caluculationRoop(formula);
-
-            answer = eval(formula+main.getNumberLast());
-            answer = main.commaSeparated(answer);
-            window.setResult(answer);
         }else{
             main.setNumber(lastNum);
-            formula = this.caluculationRoop(formula);
-            answer = eval(formula+main.getNumberLast());
-            answer = main.commaSeparated(answer);
-            window.setResult(answer);
         }
+
+        formula = this.caluculationRoop(formula);
+        answer = eval(formula+main.getNumberLast());
+        answer = main.commaSeparated(answer);
+        answer = this.resultExponentiation(answer);
+        window.setResult(answer);
+            
     }
     //計算式を作るループ処理
     caluculationRoop(formula){
@@ -329,6 +352,36 @@ class Calculation{
             formula = formula + numArray[i] + arithArray[i];
         }
         return formula;
+    }
+
+    //桁数を超えたとき10の何乗かを表示
+    resultExponentiation(answer){
+        var digit = new Digit();
+        if(digit.digitProcess(answer)){
+            return answer;
+        }else{
+            var cnt = 0;
+            answer = answer.replace(/[^-0-9.]/g, '');
+            for(var i = 0;Math.floor(answer) >= 9;i++){
+                answer = answer/10;
+                cnt++;
+            }
+            //四捨五入する桁数の指定
+            if(digit.windowSize()){
+                var aaa = Math.pow(10, 5);
+            }else{
+                var aaa = Math.pow(10, 12);
+            }
+
+            //丸め誤差対策
+            if(cnt == 0){
+                answer = (Math.round(answer*aaa)/aaa);
+                return answer;
+            }else{
+                answer = (Math.round(answer*aaa)/aaa);
+                return answer+"e"+cnt;
+            }
+        }
     }
 }
 
