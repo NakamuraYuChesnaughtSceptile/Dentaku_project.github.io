@@ -112,7 +112,7 @@ class Number_Click extends Button_Push{
         super.Result_Value += Number.value;
     }
     Switch_Number_Push_D(){
-        DecimalPoint_Fix();
+        this.DecimalPoint_Fix();
         this.TextBox_Value = this.TextBox_Value_Read() + Number.value;
         this.Result_Value += Number.value;
     }
@@ -150,32 +150,38 @@ class Operator_Push extends Button_Push{
     }
     /* 入力する値を負数として扱うかチェック */
     Number_Negative_Check(){
-        if(operator.value == "－" && this.TextBox_Null_Check()){
-            this.TextBox_Value = "-";
+        var con = $(this);
+        var operator = con[0].key;
+        if(operator == "－" && this.TextBox_Null_Check() == true){
+            this.TextBox_Value = "－";
             this.Result_Value = "-";
-        }else{
-            switch(operator.value){
-                case '+' : this.TextBox_Value += operator.value;
-                    this.Result_Value += "+";
-                    break;
-                case '－' : this.TextBox_Value += operator.value;
-                    this.Result_Value += "-";
-                    break;
-                case '×' : this.TextBox_Value +=  operator.value;
-                    this.Result_Value += "*";
-                    break;
-                case '÷' : this.TextBox_Value += operator.value;
-                    this.Result_Value += "/";
-            }
         }
     }
     Switch_Operator_Push_N(){
-        this.TextBox_Value = this.TextBox_Value += operator.value;
+        var con = $(this);
+        var operator = con[0].key;
+        switch(operator){
+            case '+' : this.TextBox_Value = operator;
+                this.Result_Value += "+";
+                console.log(this.TextBox_Value);
+                console.log(this.Result_Value);
+                break;
+            case '－' : this.TextBox_Value = operator;
+                this.Result_Value += "-";
+                break;
+            case '×' : this.TextBox_Value =  operator;
+                this.Result_Value += "*";
+                break;
+            case '÷' : this.TextBox_Value = operator;
+                this.Result_Value += "/";
+        }
 
     }
     Switch_Operator_Push_O(){
+        var con = $(this);
+        var operator = con[0].key;
         if(TextBox_Value_Read() != "-"){
-            this.TextBox_Value = this.TextBox_Value.slice(0,-1) + oprator.value;
+            this.TextBox_Value = this.TextBox_Value.slice(0,-1) + operator.value;
         }
     }
     Switch_Operator_Push_D(){
@@ -185,8 +191,8 @@ class Operator_Push extends Button_Push{
     
 }
 
-function Operator_Function(Operator){
-    var OpeResult = Operator;
+function Operator_Function(operator){
+    var OpeResult = operator;
     var Ope = new Operator_Push(OpeResult.value);
     Input_Result.value += Ope.Ope_Push();
 }
@@ -217,6 +223,15 @@ class Calculation extends Button_Push{
     }
 }
 
+class exButton extends Button_Push{
+    constructor(){
+        super();
+    }
+    DecimalPoint_Click(){
+        
+    }
+}
+
 function Equal_Function(){
     var Cal = new Calculation();
     Input_Result.value = Cal.calc();
@@ -226,5 +241,7 @@ function Point_Click(){
 }
 
 function DELETEClick(){
+    
     Input_Result.value = Input_Result.value.slice(0,-1);
+    Result_Value.value = Result_Value.value.slice(0,-1);
   }
