@@ -16,7 +16,7 @@ class Button_Push{
     //TextBoxがnullか
     TextBox_Null_Check(){
         var Null_TF;
-        if(this.TextBox_Value_Read() != null){
+        if(this.TextBox_Value_Read() != "undefined"){
             Null_TF = true;
         }
         else{
@@ -63,22 +63,26 @@ class Button_Push{
     //小数点より前に値が存在しない場合0.に修正
     DecimalPoint_Fix(){
         if(this.TextBox_Value_Read() == "."){
-            TextBox_Value = "0.";
-            return TextBox_Value;
+            this.TextBox_Value = "0.";
+            this.Result_Value = "0."; 
+            return this.TextBox_Value,this.Result_Value;
         }
     }
 
 }
 //数値を入力した場合の処理
 class Number_Click extends Button_Push{
-    constructor(){
+    constructor(num){
         super();
+        this.key = num;
     }
     Num_Push(){
         this.TextBox_Value_Read();
         if(this.TextBox_Null_Check()){
             //nullなので入力数値追加
             super.TextBox_Value += Number.value;
+            super.Result_Value += Number.value;
+            return this.key;
         }else{
             switch(this.TextBox_Last_Check()){
                 //TextBox最後尾が数値
@@ -96,59 +100,82 @@ class Number_Click extends Button_Push{
     }
     Switch_Number_Push_N(){
         if(this.TextBox_Zero_Check()){
-                super.TextBox_Value = document.getElementsByName('Number');
+                super.TextBox_Value = Number.value;
+                super.Result_Value = Number.value;
         }else{
-                super.TextBox_Value = this.TextBox_Value_Read() + document.getElementsByName('Number');
+                super.TextBox_Value = this.TextBox_Value_Read() + Number.value;
+                super.Result_Value += Number.value;
         }
     }
     Switch_Number_Push_O(){
-        this.TextBox_Value = TextBox_Value_Read() + document.getElementsByName('Number');
+        this.TextBox_Value = this.TextBox_Value_Read() + Number.value;
+        super.Result_Value += Number.value;
     }
     Switch_Number_Push_D(){
         DecimalPoint_Fix();
-        this.TextBox_Value = TextBox_Value_Read() + document.getElementsByName('Number');
+        this.TextBox_Value = this.TextBox_Value_Read() + Number.value;
+        this.Result_Value += Number.value;
     }
 }
 function Number_Function(number){
     var result = number;
-    var Num = new Number_Click();
-    Input_Result.value = Num.Num_Push();
+    var Num = new Number_Click(result.value);
+    Input_Result.value += Num.Num_Push();
 }
 
 //演算子を入力した場合の処理
 class Operator_Push extends Button_Push{
-    constructor(){
+    constructor(ope){
         super();
+        this.key = ope;
     }
     Ope_Push(){
         //TextBox取得
         this.TextBox_Value_Read();
         //負数処理
-        Number_Negative_Check();
+        this.Number_Negative_Check();
         if(this.TextBox_Null_Check() != false){
             switch(this.TextBox_Last_Check()){
-                case 'Num' : Switch_Operator_Push_N();
+                case 'Num' : this.Switch_Operator_Push_N();
                 break;
-                case 'Dec' : Switch_Operator_Push_D();
+                case 'Dec' : this.Switch_Operator_Push_D();
                 break;
-                case 'Ope' : Switch_Operator_Push_O();
+                case 'Ope' : this.Switch_Operator_Push_O();
                 break;
             }
+            return this.TextBox_Value;
+        }else{
             return this.TextBox_Value;
         }   
     }
     /* 入力する値を負数として扱うかチェック */
     Number_Negative_Check(){
-        if(document.getElementsByName('oprator') == "-" && this.TextBox_Null_Check()){
+        if(operator.value == "－" && this.TextBox_Null_Check()){
             this.TextBox_Value = "-";
+            this.Result_Value = "-";
+        }else{
+            switch(operator.value){
+                case '+' : this.TextBox_Value += operator.value;
+                    this.Result_Value += "+";
+                    break;
+                case '－' : this.TextBox_Value += operator.value;
+                    this.Result_Value += "-";
+                    break;
+                case '×' : this.TextBox_Value +=  operator.value;
+                    this.Result_Value += "*";
+                    break;
+                case '÷' : this.TextBox_Value += operator.value;
+                    this.Result_Value += "/";
+            }
         }
     }
     Switch_Operator_Push_N(){
-        this.TextBox_Value = this.TextBox_Value += document.getElementsByName('operator');
+        this.TextBox_Value = this.TextBox_Value += operator.value;
+
     }
     Switch_Operator_Push_O(){
         if(TextBox_Value_Read() != "-"){
-            this.TextBox_Value = this.TextBox_Value.slice(0,-1) + document.getElementsByName('operator');
+            this.TextBox_Value = this.TextBox_Value.slice(0,-1) + oprator.value;
         }
     }
     Switch_Operator_Push_D(){
@@ -158,9 +185,10 @@ class Operator_Push extends Button_Push{
     
 }
 
-function Operator_Function(){
-    var Ope = new Operator_Push();
-    TextBox_Value.value = Ope.Ope_Push();
+function Operator_Function(Operator){
+    var OpeResult = Operator;
+    var Ope = new Operator_Push(OpeResult.value);
+    Input_Result.value += Ope.Ope_Push();
 }
 
 class Calculation extends Button_Push{
@@ -170,7 +198,7 @@ class Calculation extends Button_Push{
     calc(){
         //TextBox内値読み込み
         this.TextBox_Value_Read();
-        Check = TextBox_Null_Check();
+        var Check = this.TextBox_Null_Check();
         //TextBoxがnull以外で演算処理移行
         if(this.Check != true){
             switch(this.TextBox_Last_Check()){
@@ -191,8 +219,12 @@ class Calculation extends Button_Push{
 
 function Equal_Function(){
     var Cal = new Calculation();
-    TextBox_Value.value = Cal.calc();
+    Input_Result.value = Cal.calc();
 }
 function Point_Click(){
-    TextBox_Value.value += ".";
+    Input_Result.value += ".";
 }
+
+function DELETEClick(){
+    Input_Result.value = Input_Result.value.slice(0,-1);
+  }
