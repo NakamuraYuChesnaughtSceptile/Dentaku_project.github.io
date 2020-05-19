@@ -78,10 +78,10 @@ class Number_Click extends Button_Push{
     }
     Num_Push(){
         this.TextBox_Value_Read();
-        if(this.TextBox_Null_Check()){
+        if(this.TextBox_Null_Check() == true){
             //nullなので入力数値追加
-            super.TextBox_Value += Number.value;
-            super.Result_Value += Number.value;
+            this.TextBox_Value = Number.value;
+            this.Result_Value = Number.value;
             return this.key;
         }else{
             switch(this.TextBox_Last_Check()){
@@ -95,7 +95,7 @@ class Number_Click extends Button_Push{
                 case 'Dec' : this.Switch_Number_Push_D();
                 break;
             }
-            return this.TextBox_Value,this.Result_Value;
+            return this.TextBox_Value;
         }
     }
     Switch_Number_Push_N(){
@@ -168,12 +168,19 @@ class Operator_Push extends Button_Push{
                 break;
             case '－' : this.TextBox_Value = operator;
                 this.Result_Value += "-";
+                console.log(this.TextBox_Value);
+                console.log(this.Result_Value);
                 break;
             case '×' : this.TextBox_Value =  operator;
                 this.Result_Value += "*";
+                console.log(this.TextBox_Value);
+                console.log(this.Result_Value);
                 break;
             case '÷' : this.TextBox_Value = operator;
                 this.Result_Value += "/";
+                console.log(this.TextBox_Value);
+                console.log(this.Result_Value);
+                break;
         }
 
     }
@@ -230,6 +237,7 @@ class Calculation extends Button_Push{
                 case 'Str' :
                 break;
             }
+            console.log(this.Result_Value);
             return this.Result_Value;
         }
     }
