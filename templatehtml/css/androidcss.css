@@ -23,15 +23,6 @@ body {
   display: block;
 }
 
-/* 全体を下に */
-
-main{
-  position: absolute;
-  bottom: 0;
-  margin: auto;
-  width: 100%;
-}
-
 /* tableの枠線を消す用 */
 
 td {
@@ -192,6 +183,12 @@ div.cluc_S {
   body{
     width: 100%;
     bottom: 0;
+  }
+  main{
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
   }
   /* 縦画面時、表示 */
   .sp_tate {
