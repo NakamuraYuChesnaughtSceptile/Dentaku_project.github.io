@@ -121,7 +121,6 @@ function Number_Function(number){
     var result = number;
     var Num = new Number_Click(result.value);
     Input_Result.value += Num.Num_Push();
-    console.log(Input_Result.value);
     this.Result_Value = Input_Result.value;
     console.log(this.Result_Value);
 }
