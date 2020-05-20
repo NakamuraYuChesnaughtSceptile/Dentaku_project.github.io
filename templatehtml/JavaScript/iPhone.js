@@ -214,8 +214,8 @@ class Digit{
         var resultMolding = result.replace(/[^0-9]/g, '');//－や小数点を排除し、数字のみに置き換える
         
         switch(flg){
-            case 0: portrait = 9 ; landscape = 16;
-            case 1: portrait = 9 ; landscape = 17;
+            case 0: portrait = 9 ;landscape = 16;break;
+            case 1: portrait = 9 ;landscape = 17;break;
         }
 
         //画面サイズの判定
@@ -230,7 +230,6 @@ class Digit{
             }
             
         }else{
-
             //横画面時の桁数判定
             if(resultMolding.length < landscape){
                 return true;
