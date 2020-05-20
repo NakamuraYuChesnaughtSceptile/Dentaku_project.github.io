@@ -121,6 +121,9 @@ function Number_Function(number){
     var result = number;
     var Num = new Number_Click(result.value);
     Input_Result.value += Num.Num_Push();
+    console.log(Input_Result.value);
+    this.Result_Value = Input_Result.value;
+    console.log(this.Result_Value);
 }
 
 //演算子を入力した場合の処理
@@ -161,22 +164,23 @@ class Operator_Push extends Button_Push{
         var con = $(this);
         var operator = con[0].key;
         switch(operator){
-            case '＋' : this.TextBox_Value = operator;
+            case '+' : this.TextBox_Value = operator;
                 this.Result_Value += "+";
                 console.log(this.TextBox_Value);
                 console.log(this.Result_Value);
+                
                 break;
-            case '－' : this.TextBox_Value = operator;
+            case '-' : this.TextBox_Value = operator;
                 this.Result_Value += "-";
                 console.log(this.TextBox_Value);
                 console.log(this.Result_Value);
                 break;
-            case '×' : this.TextBox_Value =  operator;
+            case '*' : this.TextBox_Value =  operator;
                 this.Result_Value += "*";
                 console.log(this.TextBox_Value);
                 console.log(this.Result_Value);
                 break;
-            case '÷' : this.TextBox_Value = operator;
+            case '/' : this.TextBox_Value = operator;
                 this.Result_Value += "/";
                 console.log(this.TextBox_Value);
                 console.log(this.Result_Value);
@@ -189,17 +193,18 @@ class Operator_Push extends Button_Push{
         var operator = con[0].key;
         if(this.TextBox_Last_Check == "Ope"){
             switch(operator){
-                case '＋' : this.TextBox_Value.slice(0,-1) = operator;
-                    this.Result_Value.slice(0,-1) += "+";
+                case '+' : 
+                    this.TextBox_Value = operator;
+                    this.Result_Value += "+";
                     break;
-                case '－' : this.TextBox_Value.slice(0,-1) = operator;
-                    this.Result_Value.slice(0,-1) += "-";
+                case '-' : this.TextBox_Value = operator;
+                    this.Result_Value += "-";
                     break;
-                case '×' : this.TextBox_Value.slice(0,-1) =  operator;
-                    this.Result_Value.slice(0,-1) += "*";
+                case '*' : this.TextBox_Value =  operator;
+                    this.Result_Value += "*";
                     break;
-                case '÷' : this.TextBox_Value.slice(0,-1) = operator;
-                    this.Result_Value.slice(0,-1) += "/";
+                case '/' : this.TextBox_Value = operator;
+                    this.Result_Value += "/";
             }
         }
     }
@@ -224,18 +229,26 @@ class Calculation extends Button_Push{
         //TextBox内値読み込み
         this.TextBox_Value_Read();
         var Check = this.TextBox_Null_Check();
+        console.log(Check);
         //TextBoxがnull以外で演算処理移行
-        if(this.Check != true){
+        if(Check == true){
             switch(this.TextBox_Last_Check()){
                 //TextBox最後尾が数値の場合演算処理
-                case 'Num': this.Text_Value = eval(this.Result_Value());
-                break;
+                case 'Num':
+                    console.log("11");
+                    console.log(Result_Value);
+                    this.Text_Value = eval(Result_Value);
+                    console.log(this.Text_Value);
+                    this.Result_Value = this.Text_Value;
+                    break;
                 //TextBox最後尾が小数点の場合
-                case 'Dec' : 
-                break;
+                case 'Dec' :
+                    console.log("22");
+                    break;
                 //TextBox最後尾が文字列の場合
                 case 'Str' :
-                break;
+                    console.log("33");
+                    break;
             }
             console.log(this.Result_Value);
             return this.Result_Value;
@@ -253,8 +266,10 @@ class exButton extends Button_Push{
 }
 
 function Equal_Function(){
+    console.log(Input_Result.value);
     var Cal = new Calculation();
     Input_Result.value = Cal.calc();
+    console.log(Input_Result.value);
 }
 function Point_Click(){
     Input_Result.value += ".";
