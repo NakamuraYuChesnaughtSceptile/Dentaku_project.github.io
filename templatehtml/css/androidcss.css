@@ -184,6 +184,12 @@ div.cluc_S {
     width: 100%;
     bottom: 0;
   }
+  main{
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+  }
   /* 縦画面時、表示 */
   .sp_tate {
     display: block;
@@ -198,7 +204,7 @@ div.cluc_S {
     margin-bottom: 0px;
     width: 380px;
     height: 150px;
-    font-size: 17px;
+    font-size: 37px;
     text-align: right;
   }
   /* 縦画面時の入力ボタン */
@@ -243,7 +249,7 @@ div.cluc_S {
     font-size: 30px;
     outline: 0px;
   }
-  /*Deleteボタン設定 */
+  /* Deleteボタン設定 */
   button.DELETEorCLEAR_button_V {
     width: 75px;
     height: 87px;
