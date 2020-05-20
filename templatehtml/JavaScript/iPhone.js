@@ -457,10 +457,8 @@ class Calculation{
     resultExponentiation(answer,flg){
         var digit = new Digit();
         if(digit.digitProcess(answer,flg)){
-            console.log("koko");
             return answer;
         }else{
-            console.log("koti");
             var cnt = 0;
             answer = answer.replace(/[^-0-9.]/g, '');
             for(var i = 0;Math.abs(Math.floor(answer)) >= 9;i++){
@@ -508,7 +506,6 @@ class displayWindow{
     }
 
     setFormulaText(num){
-        console.log(num);
         formulaText.value = num;
     }
 
