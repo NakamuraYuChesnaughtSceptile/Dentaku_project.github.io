@@ -153,7 +153,7 @@ class NumberKey{
         //押下されたのが0以外の数字か判定
         if(this.keyNumber!=="0"){
             clear.setC();
-        }else{
+        }else if(result.indexOf(".") >= 1){
             window.setResult(result+"0");
             window.setFormulaText(result+"0");
             return;
@@ -349,11 +349,18 @@ class PlusMinus{
 class Percent{
     percentProcess(){
         var window = new displayWindow();
+        var main = new Main();
         var result = window.getFormulaText();
 
-        var percentNum = result/100;
-        window.setResult(percentNum);
-        window.setFormulaText(percentNum);
+        if(main.getPreviousLast() == "arithmetic" && (main.getArithmeticLast() == "+"||main.getArithmeticLast() == "-")){
+            var percentNum = result*result/100;
+            window.setResult(percentNum);
+            window.setFormulaText(percentNum);
+        }else{
+            var percentNum = result/100;
+            window.setResult(percentNum);
+            window.setFormulaText(percentNum);
+        }
     }
 }
 //↑%キー処理ここまで↑
@@ -450,11 +457,13 @@ class Calculation{
     resultExponentiation(answer,flg){
         var digit = new Digit();
         if(digit.digitProcess(answer,flg)){
+            console.log("koko");
             return answer;
         }else{
+            console.log("koti");
             var cnt = 0;
             answer = answer.replace(/[^-0-9.]/g, '');
-            for(var i = 0;Math.floor(answer) >= 9;i++){
+            for(var i = 0;Math.abs(Math.floor(answer)) >= 9;i++){
                 answer = answer/10;
                 cnt++;
             }
