@@ -17,7 +17,6 @@ function numberClick(num){
     var main = new Main();
 
     //画面に対応した桁数は超えていないか
-    console.log(formulaText.value);
     if(digit.digitProcess(formulaText.value,0)){
         number.number_Push();
     }else if(main.getPreviousLast()=="arithmetic"||main.getPreviousLast()=="equal"){
@@ -231,7 +230,6 @@ class Digit{
             }
             
         }else{
-            console.log(landscape);
             //横画面時の桁数判定
             if(resultMolding.length < landscape){
                 return true;
