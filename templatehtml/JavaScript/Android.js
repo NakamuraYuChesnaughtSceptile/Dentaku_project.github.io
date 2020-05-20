@@ -256,13 +256,35 @@ class Calculation extends Button_Push{
     }
 }
 
-class exButton extends Button_Push{
+class Ex_Button extends Button_Push{
     constructor(){
         super();
     }
     DecimalPoint_Click(){
-        
+        if(this.TextBox_Last_Check() != "Dec"){
+            this.TextBox_Value += ".";
+            this.Result_Value += ".";
+        }
+        return this.TextBox_Value;
     }
+    Delete_Click(){
+        if(this.TextBox_Null_Check != true){
+            this.TextBox_Value = this.TextBox.Value.slice(0,-1);
+            this.Result_Value = this.Result_Value.slice(0,-1);
+        }
+        return this.TextBox_Value;
+    }
+}
+
+
+function Point_Click(){
+   var Point = new Ex_Button();
+   Input_Result.value = Point.DecimalPoint_Click(); 
+}
+
+function DELETEClick(){
+    var Delete = new Ex_Button();
+    Input_Result.value = Delete.Delete_Click();
 }
 
 function Equal_Function(){
@@ -271,12 +293,3 @@ function Equal_Function(){
     Input_Result.value = Cal.calc();
     console.log(Input_Result.value);
 }
-function Point_Click(){
-    Input_Result.value += ".";
-}
-
-function DELETEClick(){
-    
-    Input_Result.value = Input_Result.value.slice(0,-1);
-    Result_Value.value = Result_Value.value.slice(0,-1);
-  }
