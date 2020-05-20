@@ -17,7 +17,7 @@ class Button_Push{
     //TextBoxがnullか
     TextBox_Null_Check(){
         var Null_TF;
-        if(this.TextBox_Value_Read() != "undefined"){
+        if(this.TextBox_Value_Read() != "undefined" || this.TextBox_Value_Read() != null){
             Null_TF = true;
         }
         else{
@@ -100,7 +100,7 @@ class Number_Click extends Button_Push{
         }
     }
     Switch_Number_Push_N(){
-        if(this.TextBox_Zero_Check()){
+        if(this.TextBox_Zero_Check() == true){
                 this.TextBox_Value = Number.value;
                 Result_Out = Number.value;
         }else{
@@ -138,7 +138,7 @@ class Operator_Push extends Button_Push{
         this.TextBox_Value_Read();
         //負数処理
         this.Number_Negative_Check();
-        if(this.TextBox_Null_Check() != false){
+        if(this.TextBox_Null_Check() == true){
             switch(this.TextBox_Last_Check()){
                 case 'Num' : this.Switch_Operator_Push_N();
                 break;
@@ -149,8 +149,9 @@ class Operator_Push extends Button_Push{
             }
             return this.TextBox_Value;
         }else{
+            this.TextBox_Value = null;
             return this.TextBox_Value;
-        }   
+        }  
     }
     /* 入力する値を負数として扱うかチェック */
     Number_Negative_Check(){
@@ -174,17 +175,17 @@ class Operator_Push extends Button_Push{
             case '-' : this.TextBox_Value = operator;
                 Result_Out += "-";
                 console.log(this.TextBox_Value);
-                console.log(this.Result_Value);
+                console.log(Result_Out);
                 break;
             case '*' : this.TextBox_Value =  operator;
                 Result_Out += "*";
                 console.log(this.TextBox_Value);
-                console.log(this.Result_Value);
+                console.log(Result_Out);
                 break;
             case '/' : this.TextBox_Value = operator;
                 Result_Out += "/";
                 console.log(this.TextBox_Value);
-                console.log(this.Result_Value);
+                console.log(Result_Out);
                 break;
         }
 
@@ -195,16 +196,19 @@ class Operator_Push extends Button_Push{
         if(this.TextBox_Last_Check == "Ope"){
             switch(operator){
                 case '+' : 
-                    this.TextBox_Value = operator;
+                    this.TextBox_Value = String(this.TextBox_Value).slice(0,-1) + operator;
                     Result_Out += "+";
                     break;
-                case '-' : this.TextBox_Value = operator;
+                case '-' : 
+                    this.TextBox_Value = String(this.TextBox_Value).slice(0,-1) + operator;
                     Result_Out += "-";
                     break;
-                case '*' : this.TextBox_Value =  operator;
+                case '*' : 
+                    this.TextBox_Value = String(this.TextBox_Value).slice(0,-1) + operator;
                     Result_Out += "*";
                     break;
-                case '/' : this.TextBox_Value = operator;
+                case '/' : 
+                    this.TextBox_Value = String(this.TextBox_Value).slice(0,-1) + operator;
                     Result_Out += "/";
             }
         }
