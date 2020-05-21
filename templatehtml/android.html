@@ -113,7 +113,8 @@
     </div>
     <!-- 横画面-->
     <div class="sp_yoko">
-      <input type="text" class="result_input_S" style="width: 99%;">
+      <!-- <input type="text" class="result_input_S" style="width: 99%;"> -->
+      <input type="text" class="result_input_S" id="Input_Result_S" style="width:99%;" readonly>
       <div class="yokoside">
 
         <!-- 数値、演算子-->
@@ -235,9 +236,16 @@
 		    clearInterval(timer1);
 	      }).mousedown(function(){
 	        timer1 = setTimeout(function(){
-	          $("#Input_Result").val(null);
+            $("#Input_Result").val(null);
+            $("#Hidden_Result").val(null);
 	          },2000);
-	      });
+        });
+        
+        // ボタン押毎時、縦画面のテキストボックスの中身を取得し、横のテキストボックスに貼り付け
+        $('button').click(function(){
+          var goo = document.getElementById("Input_Result").value;
+          document.getElementById("Input_Result_S").value = goo;
+        });
     </script>
 </body>
 
