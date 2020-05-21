@@ -38,7 +38,7 @@ class Button_Push{
         var Last_Type = "";
         //小数点
         if(this.TextBox_Slice(-1) == "."){
-            Last_type = "Dec";
+            Last_Type = "Dec";
         //数値
         }else if(isNaN(String(this.TextBox_Slice(-1))) == false){
             Last_Type = "Num";
@@ -147,10 +147,10 @@ class Operator_Push extends Button_Push{
                 case 'Ope' : this.Switch_Operator_Push_O();
                 break;
             }
-            return this.TextBox_Value;
+            return this.key;
         }else{
             this.TextBox_Value = null;
-            return this.TextBox_Value;
+            return Input_Result.value;
         }  
     }
     /* 入力する値を負数として扱うかチェック */
@@ -285,8 +285,7 @@ class Ex_Button extends Button_Push{
 
 function Point_Click(){
    var Point = new Ex_Button();
-   var InPoint = Point.DecimalPoint_Click(); 
-   Input_Result.value += InPoint;
+   var InPoint = Point.DecimalPoint_Click();
 }
 
 function DELETEClick(){
