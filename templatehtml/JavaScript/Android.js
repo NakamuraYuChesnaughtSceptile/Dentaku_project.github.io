@@ -80,8 +80,8 @@ class Number_Click extends Button_Push{
         this.TextBox_Value_Read();
         if(this.TextBox_Null_Check() == false){
             //nullなので入力数値追加
-            this.TextBox_Value = Number.value;
-            Hidden_Result.value = Number.value;
+            this.TextBox_Value = this.key;
+            Hidden_Result.value = this.key;
             return this.key;
         }else{
             switch(this.TextBox_Last_Check()){
@@ -100,31 +100,29 @@ class Number_Click extends Button_Push{
     }
     Switch_Number_Push_N(){
         if(this.TextBox_Zero_Check()){
-                this.TextBox_Value = Number_Button.value;
-                Hidden_Result.value = Number_Button.value;
+                this.TextBox_Value = this.key;
+                Hidden_Result.value = this.key;
         }else{
-                this.TextBox_Value = this.TextBox_Value_Read() + Number_Button.value;
-                Hidden_Result.value.value = Number_Button.value;
+                this.TextBox_Value = this.TextBox_Value_Read() + this.key;
+                Hidden_Result.value = this.key;
         }
     }
     Switch_Number_Push_O(){
-        this.TextBox_Value = this.TextBox_Value_Read() + Number_Button.value;
-        Hidden_Result.value.value += Number_Button.value;
+        this.TextBox_Value = this.TextBox_Value_Read() + this.key;
+        Hidden_Result.value.value += this.key;
     }
     Switch_Number_Push_D(){
         this.DecimalPoint_Fix();
-        this.TextBox_Value = this.TextBox_Value_Read() + Number_Button.value;
-        Hidden_Result.value += Number_Button.value;
+        this.TextBox_Value = this.TextBox_Value_Read() + this.key;
+        Hidden_Result.value += this.key;
     }
 }
 function Number_Function(number){
-    console.log(Number_Button.value);
     var result = number;
     var Num = new Number_Click(result.value);
-    Input_Result.value += Num.Num_Push();
-    console.log(Input_Result.value);
-    console.log(Hidden_Result.value);
+    Input_Result.value = Num.Num_Push();
     Hidden_Result.value += String(Input_Result.value).slice(-1);
+    console.log(Input_Result.value);
     console.log(Hidden_Result.value);
     this.Result_Value = Input_Result.value;
 }
