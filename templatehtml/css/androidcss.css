@@ -173,6 +173,10 @@ div.cluc_S {
   display: flex;
   justify-content: space-around;
 }
+/* 横の出力結果 */
+#Input_Result_S{
+  font-size: 28px;
+}
 
 /* --------------------------ここまでPC用and Android横画面用 */
 
