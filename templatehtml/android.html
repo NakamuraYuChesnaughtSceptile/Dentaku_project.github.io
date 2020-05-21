@@ -236,7 +236,8 @@
 		    clearInterval(timer1);
 	      }).mousedown(function(){
 	        timer1 = setTimeout(function(){
-	          $("#Input_Result").val(null);
+            $("#Input_Result").val(null);
+            $("#Hidden_Result").val(null);
 	          },2000);
         });
         
